@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.179">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Shyam Ravishankar">
+<meta name="dcterms.date" content="2024-05-24">
+
+<title>Blog - Review of Measure Theory</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Blog</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">About</a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/"><i class="bi bi-github" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com"><i class="bi bi-twitter" role="img">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Review of Measure Theory</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">analysis</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Shyam Ravishankar </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">May 24, 2024</p>
+      </div>
+    </div>
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<div class="hidden">
+
+</div>
+<p>The first topic I plan to cover in my blog is some abstract harmonic analysis, including existence and uniqueness of Haar measure, the proof of Pontryagin duality, and Fourier inversion. In preparation for this, I will begin with a review of the fundamental concepts of measure theory. Most theorems will be stated without proof, but I will attempt to give helpful intuition or examples where possible. I assume the reader is familiar with standard real and complex analysis (i.e.&nbsp;at an undergraduate level), although it may be difficult to learn measure theory for the first time from the following summary. Some familiarity with functional analysis may also be helpful for some of the measure theory. Finally, I will also assume the reader is familiar with basic point-set topology and group theory.</p>
+<p>For more details on the following material, see any of the following: <span class="citation" data-cites="halmos">(<a href="#ref-halmos" role="doc-biblioref">Halmos 1974</a>)</span>, <span class="citation" data-cites="cohn">(<a href="#ref-cohn" role="doc-biblioref">Cohn 2013</a>)</span>, <span class="citation" data-cites="papa-rudin">(<a href="#ref-papa-rudin" role="doc-biblioref">Rudin 1987</a>)</span>.</p>
+<section id="sigma-algebras-and-measure-spaces" class="level2">
+<h2 class="anchored" data-anchor-id="sigma-algebras-and-measure-spaces"><span class="math inline">\(\sigma\)</span>-algebras and measure spaces</h2>
+<p>Let <span class="math inline">\(X\)</span> be a set; we write <span class="math inline">\(\mathcal{P}(X)\)</span> for the power set of <span class="math inline">\(X\)</span>. A <span class="math inline">\(\sigma\)</span>-algebra on <span class="math inline">\(X\)</span> is a set <span class="math inline">\(\Sigma \subset \mathcal{P}(X)\)</span> satisfying the following axioms:</p>
+<ol type="1">
+<li><span class="math inline">\(X \in \Sigma\)</span>;</li>
+<li><span class="math inline">\(\Sigma\)</span> is closed under complements: If <span class="math inline">\(A \in \Sigma\)</span> then <span class="math inline">\(A^c = X\setminus A \in \Sigma\)</span>;</li>
+<li><span class="math inline">\(\Sigma\)</span> is closed under countable unions: If <span class="math inline">\(\set{A_i \colon i\in \mathbf{N}} \subset \Sigma\)</span> then <span class="math inline">\(\bigcup_{i=1}^\infty A_i \in \Sigma\)</span>.</li>
+</ol>
+<p>It follows from 1. and 2. that <span class="math inline">\(\varnothing \in \Sigma\)</span> and it follows from 2. and 3. that <span class="math inline">\(\Sigma\)</span> is closed under countable intersections. The sets <span class="math inline">\(E \in \Sigma\)</span> are called the <em>measurable</em> sets of <span class="math inline">\(X\)</span>. A pair <span class="math inline">\((X,\Sigma)\)</span> is called a <em>measurable space</em>; for convenience we will usually just denote a measurable space by <span class="math inline">\(X\)</span>, omitting the <span class="math inline">\(\sigma\)</span>-algebra.</p>
+<p>A (positive) measure on <span class="math inline">\(X\)</span> is a function <span class="math inline">\(\mu \colon \Sigma \to [0,\infty]\)</span> such that</p>
+<p><span class="math display">\[\mu\left(\bigcup_{i=1}^\infty A_i \right) = \sum_{i=1}^\infty \mu(A_i)\]</span></p>
+<p>for any countable collection <span class="math inline">\(\set{A_i \colon i\in \mathbf{N}} \subset \Sigma\)</span> of <strong>pairwise disjoint</strong> measurable sets. Note that we allow <span class="math inline">\(\mu\)</span> to take on the value <span class="math inline">\(\infty\)</span>, and the previous equality must still hold true even when one (and thus both) side is infinite. We say that <span class="math inline">\(\mu\)</span> is <em>countably additive</em>. Two immediate consequences of this definition are that <span class="math inline">\(\mu(B) \leq \mu(A)\)</span> whenever <span class="math inline">\(A,B \in \Sigma\)</span> and <span class="math inline">\(B\subset A\)</span>, and</p>
+<p><span class="math display">\[ \mu \left(\bigcup_{i=1}^\infty A_i\right) \leq \sum_{i=1}^\infty \mu(A_i)\]</span></p>
+<p>for <strong>any</strong> countable collection <span class="math inline">\(\set{A_i \colon i\in \mathbf{N}} \subset \Sigma\)</span> of measurable sets. The triple <span class="math inline">\((X, \Sigma, \mu)\)</span> is called a measure space. As before, we will often write <span class="math inline">\(X\)</span> for a measure space, omitting the <span class="math inline">\(\sigma\)</span>-algebra and the measure.</p>
+<p>When <span class="math inline">\(\mu(A) = 0\)</span>, we call <span class="math inline">\(A\)</span> a <em>null set</em>. We say a measure <span class="math inline">\(\mu\)</span> is <em>complete</em> if whenever <span class="math inline">\(A\)</span> is a null set, we have <span class="math inline">\(\mathcal{P}(A) \subset \Sigma\)</span>. We say <span class="math inline">\(\mu\)</span> is <em>finite</em> if <span class="math inline">\(\mu(X) &lt; \infty\)</span> and we say <span class="math inline">\(\mu\)</span> is <em><span class="math inline">\(\sigma\)</span>-finite</em> if <span class="math inline">\(X\)</span> can be written as the union of a countable collection of finite-measure sets.</p>
+<section id="examples-of-sigma-algebras-and-measures" class="level3">
+<h3 class="anchored" data-anchor-id="examples-of-sigma-algebras-and-measures">Examples of <span class="math inline">\(\sigma\)</span>-algebras and measures</h3>
+<p>The sets <span class="math inline">\(\mathcal{P}(X)\)</span> and <span class="math inline">\(\set{\varnothing, X}\)</span> are simple examples of <span class="math inline">\(\sigma\)</span>-algebras. A less trivial but still important example is the <em>Borel</em> algebra <span class="math inline">\(\mathcal{B}(X)\)</span>. When <span class="math inline">\(X\)</span> is a topological space, we define <span class="math inline">\(\mathcal{B}(X)\)</span> to be the smallest <span class="math inline">\(\sigma\)</span>-algebra containing the open sets of <span class="math inline">\(X\)</span>. This <span class="math inline">\(\sigma\)</span>-algebra is important as it will allow us to frequently tie together such notions as measurability and continuity. Another important <span class="math inline">\(\sigma\)</span>-algebra in real analysis is the Lebesgue <span class="math inline">\(\sigma\)</span>-algebra. These are defined to be the sets <span class="math inline">\(E \subset \mathbf{R}\)</span> such that</p>
+<p><span class="math display">\[ \mu^*(A) = \mu^*(A \cap E) + \mu^*(A \cap E^c) \quad \text{for all } A \subset \mathbf{R}\]</span></p>
+<p>(here <span class="math inline">\(\mu^*\)</span> denotes Lebesgue outer measure).</p>
+<p>The simplest example of a measure is the counting measure defined on <span class="math inline">\(\Sigma = \mathcal{P}(X)\)</span> by <span class="math inline">\(\mu(A) = |A|\)</span> is the cardinality of <span class="math inline">\(A\)</span>. This is the natural measure on countable sets such as <span class="math inline">\(\mathbf{N}\)</span> and <span class="math inline">\(\mathbf{Z}\)</span>, and we notice that in such cases counting measure is <span class="math inline">\(\sigma\)</span>-finite. Another common example of a measure is Lebesgue measure on <span class="math inline">\(\mathbf{R}^n\)</span> (where <span class="math inline">\(\Sigma\)</span> is the aforementioned Lebesgue <span class="math inline">\(\sigma\)</span>-algebra); this is an example of a complete <span class="math inline">\(\sigma\)</span>-finite Borel measure<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. Finally, the object of the next few blog posts will be Haar measure on locally compact abelian groups, an example of which we have already in Lebesgue measure.</p>
+</section>
+</section>
+<section id="outer-measures-and-carathéodorys-criterion" class="level2">
+<h2 class="anchored" data-anchor-id="outer-measures-and-carathéodorys-criterion">Outer Measures and Carathéodory’s criterion</h2>
+<p>A common approach to construct Lebesgue measure on <span class="math inline">\(\mathbf{R}^n\)</span> is via the Lebesgue outer measure and Carathéodory’s criterion. Another approach is to use the Riesz Representation Theorem (to be discussed later in this post). A third, less common approach would be to define Lebesgue measure as the completion of the normalized Haar measure on <span class="math inline">\(\mathbf{R}^n\)</span>. An outer measure is essentially a weaker version of a measure that is defined on all of <span class="math inline">\(\mathcal{P}(X)\)</span>. More precisely, a function <span class="math inline">\(\mu^* \colon \mathcal{P}(X) \to [0,\infty]\)</span> is called an outer measure if the following hold:</p>
+<ol type="i">
+<li>Empty set is null: <span class="math inline">\(\mu^*(\varnothing) = 0\)</span>;</li>
+<li>Monotone: If <span class="math inline">\(A \subset B\)</span> then <span class="math inline">\(\mu^*(A) \leq \mu^*(B)\)</span>;</li>
+<li>Countably <strong>sub</strong>additive: If <span class="math inline">\(\{A_i \colon i\in \mathbf{N}\} \subset \mathcal{P}(X)\)</span>, then</li>
+</ol>
+<p><span class="math display">\[ \mu^*\left(\bigcup_{i=1}^\infty A_i \right) \leq \sum_{i=1}^\infty \mu^*(A_i). \]</span></p>
+<p>The <em>Lebesgue outer measure</em> on <span class="math inline">\(\mathbf{R}^n\)</span> is defined as</p>
+<p><span class="math display">\[ \mu^*(E) \coloneqq \inf\left\{ \sum_{i=1}^\infty V(B_i) \colon E \subset \bigcup_{i=1}^\infty B_i \right\} \]</span></p>
+<p>where <span class="math inline">\(B_i\)</span> are balls in <span class="math inline">\(\mathbf{R}^n\)</span> and <span class="math inline">\(V(B_i)\)</span> denotes the <span class="math inline">\(n\)</span>-volume of <span class="math inline">\(B_i\)</span>. The Lebesgue measurable sets are defined to be those sets <span class="math inline">\(E \subset \mathbf{R}^n\)</span> which satisfy</p>
+<p><span class="math display">\[ \mu^*(A) = \mu^*(A \cap E) + \mu^*(A \cap E^c) \]</span></p>
+<p>for all <span class="math inline">\(A \subset \mathbf{R}^n\)</span>. One can then verify that these sets form a <span class="math inline">\(\sigma\)</span>-algebra and that the Borel sets are Lebesgue measurable. This extends more generally to any outer measure in the following form:</p>
+<div id="thm-cara" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 1 (Carathéodory’s criterion) </strong></span>Let <span class="math inline">\(\mu^*\)</span> be an outer measure on <span class="math inline">\(X\)</span>; then the sets <span class="math inline">\(E \subset X\)</span> which satisfy</p>
+<p><span class="math display">\[ \mu^*(A) = \mu^*(A \cap E) + \mu^*(A \cap E^c) \]</span></p>
+<p>form a <span class="math inline">\(\sigma\)</span>-algebra, and <span class="math inline">\(\mu^*\)</span> forms a measure when restricted to this <span class="math inline">\(\sigma\)</span>-algebra.</p>
+</div>
+<p>This is a powerful tool for constructing measures; in particular (as in the construction of Haar measure we will see in a future post), to construct a Borel measure on <span class="math inline">\(X\)</span>, it suffices to construct an outer measure on <span class="math inline">\(X\)</span> and show that the open sets satisfy Carathéodory’s criterion.</p>
+</section>
+<section id="measurable-functions-and-integration" class="level2">
+<h2 class="anchored" data-anchor-id="measurable-functions-and-integration">Measurable functions and integration</h2>
+<p>Let <span class="math inline">\(X\)</span> be a measure space and <span class="math inline">\(Y\)</span> a topological space. We say <span class="math inline">\(f \colon X \to Y\)</span> is <em>measurable</em> if <span class="math inline">\(f^{-1}(E)\)</span> is measurable for all open <span class="math inline">\(E\subset Y\)</span>. In the case where <span class="math inline">\(Y\)</span> is the extended real number line <span class="math inline">\(\overline{\mathbf{R}} = [-\infty, \infty]\)</span> it suffices to check that <span class="math inline">\(f^{-1}((\alpha, \infty])\)</span> is measurable for all <span class="math inline">\(\alpha \in \mathbf{R}\)</span>. An important class of measurable functions <span class="math inline">\(X \to \overline{\mathbf{R}}\)</span> (resp. to <span class="math inline">\(\mathbf{R}\)</span> or <span class="math inline">\(\mathbf{C}\)</span>) are the <em>indicator</em> or <em>characteristic</em> functions for measurable sets <span class="math inline">\(E\subset X\)</span>:</p>
+<p><span class="math display">\[ \mathbf{1}_E(x) = \begin{cases}
+    1 &amp; \text{if } x \in E\\
+    0 &amp; \text{if } x \notin E
+    \end{cases}.\]</span></p>
+<p>A complex-valued function on <span class="math inline">\(X\)</span> is called <em>simple</em> if it has finite range. We note that any measurable simple function <span class="math inline">\(s\)</span> can be written as</p>
+<p><span class="math display">\[ s = \sum_{k=1}^n \alpha_k \mathbf{1}_{E_k} \]</span></p>
+<p>for some <span class="math inline">\(\alpha_1,\ldots,\alpha_n \in \mathbf{C}\)</span> and measurable sets <span class="math inline">\(E_1,\ldots, E_n\)</span>. The following theorem is a fundamental result that will allow us to develop the theory of integration on arbitrary measure spaces.</p>
+<div id="thm-simpleapprox" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 2 (Approximation by simple functions) </strong></span>Let <span class="math inline">\(f \colon X \to [0,\infty]\)</span> be measurable. There exist measurable simple functions <span class="math inline">\(s_n \colon X \to [0,\infty]\)</span> such that</p>
+<ol type="1">
+<li><span class="math inline">\(0 \leq s_1 \leq s_2 \leq \cdots \leq f\)</span> (these inequalities hold when each function is evaluated at the same <span class="math inline">\(x\)</span>, for any <span class="math inline">\(x \in X\)</span>).</li>
+<li><span class="math inline">\(s_n(x) \to f(x)\)</span> as <span class="math inline">\(n \to \infty\)</span> for all <span class="math inline">\(x \in X\)</span>.</li>
+</ol>
+</div>
+<p>Let <span class="math inline">\(s = \sum_{k=1}^n \alpha_k\mathbf{1}_{E_k}\)</span> be a measurable simple function with codomain <span class="math inline">\([0,\infty]\)</span>. For any measurable <span class="math inline">\(A \subset X\)</span> we define</p>
+<p><span class="math display">\[ \int_A s \, d\mu \coloneqq \sum_{k=1}^n \alpha_k \mu(A \cap E_k). \]</span></p>
+<p>For any measurable <span class="math inline">\(f \colon X \to [0,\infty]\)</span> we define</p>
+<p><span class="math display">\[ \int_A f \, d\mu \coloneqq \sup \left\{\int_A s \, d\mu \colon 0 \leq s \leq f, s \text{ measurable simple} \right\}. \]</span></p>
+<p>More generally for <span class="math inline">\(f \colon X \to \overline{\mathbf{R}}\)</span>, we write <span class="math inline">\(f = f_+ - f_-\)</span> where <span class="math inline">\(f_+ \coloneqq \max\{ f, 0\}\)</span> and <span class="math inline">\(f_- \coloneqq -\min\{ f, 0\}\)</span> are the positive and negative parts of <span class="math inline">\(f\)</span>. Since <span class="math inline">\(f_+,f_-\)</span> map to <span class="math inline">\([0,\infty]\)</span> we can define</p>
+<p><span class="math display">\[ \int_A f \, d\mu \coloneqq \int_A f_+ \, d\mu - \int_A f_- \, d\mu. \]</span></p>
+<p>Finally, if <span class="math inline">\(f \colon X \to \mathbf{C}\)</span>, we write <span class="math inline">\(f = g + ih\)</span> where <span class="math inline">\(g,h\)</span> map to <span class="math inline">\(\mathbf{R}\)</span> and define</p>
+<p><span class="math display">\[ \int_A f \, d\mu \coloneqq \int_A g \, d\mu + i\int_A h \, d\mu. \]</span></p>
+<p>We note that if <span class="math inline">\(f \colon X \to [0,\infty]\)</span> is measurable, then the function <span class="math inline">\(\nu \colon X \to [0,\infty]\)</span> defined by</p>
+<p><span class="math display">\[ \nu(A) \coloneqq \int_A f \, d\mu \]</span></p>
+<p>is a measure on <span class="math inline">\((X,\Sigma)\)</span>, and we have</p>
+<p><span class="math display">\[ \int_X g \, d\nu = \int_X gf \, d\mu \]</span></p>
+<p>for all measurable <span class="math inline">\(g \colon X \to [0,\infty]\)</span>.</p>
+</section>
+<section id="properties-of-measurable-functions-and-integration" class="level2">
+<h2 class="anchored" data-anchor-id="properties-of-measurable-functions-and-integration">Properties of measurable functions and integration</h2>
+<p>Assume <span class="math inline">\(f,g\)</span> are measurable, <span class="math inline">\(\alpha \in \mathbf{C}\)</span>, and <span class="math inline">\(A,B\in \Sigma\)</span>. Then the following hold:</p>
+<ol type="i">
+<li><span class="math inline">\(f+g\)</span>, <span class="math inline">\(\alpha f\)</span>, and <span class="math inline">\(|f|\)</span> are measurable;</li>
+<li>If <span class="math inline">\(f\leq g\)</span> then <span class="math inline">\(\int_A f \, d\mu \leq \int_A g \, d\mu\)</span>;</li>
+<li>If <span class="math inline">\(A \subset B\)</span> and <span class="math inline">\(f \geq 0\)</span> then <span class="math inline">\(\int_A f \, d\mu \leq \int_B f \, d\mu\)</span>;</li>
+<li><span class="math inline">\(\int_A f+g \, d\mu = \int_A f \, d\mu + \int_A g \, d\mu\)</span> and <span class="math inline">\(\int_A \alpha f \, d\mu = \alpha \int_A f \, d\mu\)</span>;</li>
+<li>If <span class="math inline">\(f \equiv 0\)</span> then <span class="math inline">\(\int_A f \, d\mu = 0\)</span>;</li>
+<li>If <span class="math inline">\(\mu(A) = 0\)</span> then <span class="math inline">\(\int_A f \, d\mu = 0\)</span>;</li>
+<li><span class="math inline">\(\int_A f \, d\mu = \int_X \mathbf{1}_A f \, d\mu\)</span>;</li>
+<li>If <span class="math inline">\(h \colon \mathbf{C}\to \mathbf{C}\)</span> is measurable then <span class="math inline">\(h\circ f\)</span> is measurable.</li>
+</ol>
+<p>Suppose now that <span class="math inline">\((f_n)\)</span> is a sequence of measurable functions on <span class="math inline">\(X\)</span>; the following also hold:</p>
+<ol type="i">
+<li>If each <span class="math inline">\(f_n\)</span> maps to <span class="math inline">\(\overline{\mathbf{R}}\)</span> then <span class="math inline">\(\sup_n f_n(x)\)</span> and <span class="math inline">\(\inf_n f_n(x)\)</span> are measurable;</li>
+<li>If each <span class="math inline">\(f_n\)</span> maps to <span class="math inline">\(\overline{\mathbf{R}}\)</span> then <span class="math inline">\(\limsup_n f_n(x)\)</span> and <span class="math inline">\(\liminf_n f_n(x)\)</span> are measurable;</li>
+<li>If <span class="math inline">\(f(x) \coloneqq \lim_{n\to\infty} f_n(x)\)</span> exists for each <span class="math inline">\(x\in X\)</span> then <span class="math inline">\(f\)</span> is measurable.</li>
+</ol>
+<p>We state now some important convergence theorems for integration; in my opinion it is these theorems that give the theory of Lebesgue integration its power.</p>
+<div id="thm-mct" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 3 (Monotone Convergence Theorem) </strong></span>Let <span class="math inline">\((f_n)\)</span> be a sequence of (extended) real-valued measurable functions on <span class="math inline">\(X\)</span> such that</p>
+<ol type="a">
+<li><span class="math inline">\(0 \leq f_1 \leq f_2 \leq \cdots \leq \infty\)</span>;</li>
+<li><span class="math inline">\(f_n(x) \to f(x)\)</span> for all <span class="math inline">\(x\in X\)</span>.</li>
+</ol>
+<p>Then <span class="math inline">\(f\)</span> is measurable and</p>
+<p><span class="math display">\[ \int_X f_n \, d\mu \to \int_X f\, d\mu. \]</span></p>
+</div>
+<div id="cor-mctsum" class="theorem corollary">
+<p><span class="theorem-title"><strong>Corollary 1 </strong></span>Let <span class="math inline">\((f_n)\)</span> be a sequence of nonnegative measurable functions on <span class="math inline">\(X\)</span>. Then</p>
+<p><span class="math display">\[ \sum_{n=1}^\infty \int_X f_n \, d\mu = \int_X \sum_{n=1}^\infty f_n \, d\mu. \]</span></p>
+</div>
+<div id="lem-fatou" class="theorem lemma">
+<p><span class="theorem-title"><strong>Lemma 1 (Fatou’s Lemma) </strong></span>Suppose <span class="math inline">\((f_n)\)</span> is a sequence of nonnegative measurable functions on <span class="math inline">\(X\)</span>. Then</p>
+<p><span class="math display">\[ \int_X \liminf_n f_n \, d\mu \leq \liminf_n \int_X f_n \, d\mu. \]</span></p>
+</div>
+<div id="cor-fatouLebesgue" class="theorem corollary">
+<p><span class="theorem-title"><strong>Corollary 2 (Fatou-Lebesgue Theorem) </strong></span>Let <span class="math inline">\((f_n)\)</span> be a sequence of real-valued measurable functions, and suppose there exists a measurable function <span class="math inline">\(g\)</span> with the property that <span class="math inline">\(\int_X g \, d\mu &lt; \infty\)</span> (we say <span class="math inline">\(g\)</span> is integrable). If <span class="math inline">\(|f_n(x)| \leq g(x)\)</span> for all <span class="math inline">\(n\)</span> and all <span class="math inline">\(x\in X\)</span>, then all <span class="math inline">\(f_n\)</span> as well as <span class="math inline">\(\limsup_n f_n\)</span> and <span class="math inline">\(\liminf_n f_n\)</span> are integrable, and</p>
+<p><span class="math display">\[ \int_X \liminf_n f_n \, d\mu \leq \liminf_n \int_X f_n \, d\mu \leq \limsup_n \int_X f_n \, d\mu \leq \int_X \limsup_n f_n \, d\mu. \]</span></p>
+</div>
+<div id="thm-dct" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 4 (Dominated Convergence Theorem) </strong></span>Let <span class="math inline">\((f_n)\)</span> be a sequence of measurable functions on <span class="math inline">\(X\)</span> such that <span class="math inline">\(f(x) \coloneqq \lim_{n\to\infty} f_n(x)\)</span> exists for all <span class="math inline">\(x\in X\)</span>. If there is an integrable function <span class="math inline">\(g\)</span> such that <span class="math inline">\(|f_n(x)| \leq g(x)\)</span> for all <span class="math inline">\(n\)</span> and all <span class="math inline">\(x\in X\)</span>, then <span class="math inline">\(f\)</span> is integrable and</p>
+<p><span class="math display">\[ \lim_{n\to\infty} \int_X f_n \, d\mu = \int_X f \, d\mu. \]</span></p>
+</div>
+<p>We note that, as is common in the theory of integration, theorem conditions stated to hold for all <span class="math inline">\(x \in X\)</span> can generally be weakened to hold <em><span class="math inline">\(\mu\)</span>-almost everywhere</em> i.e.&nbsp;for all <span class="math inline">\(x \in X\setminus E\)</span> where <span class="math inline">\(E\)</span> is some measurable set with <span class="math inline">\(\mu(E) = 0\)</span>.</p>
+</section>
+<section id="a-flavor-of-functional-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="a-flavor-of-functional-analysis">A Flavor of Functional Analysis</h2>
+<p>The results in this section have a functional analysis-type flavor to them. Nevertheless, they are still what I would consider to be core measure-theoretic results.</p>
+<p>Let <span class="math inline">\(X\)</span> be a locally compact Hausdorff space and <span class="math inline">\(\mathcal{B}\)</span> its Borel <span class="math inline">\(\sigma\)</span>-algebra. A <em>Radon measure</em> on <span class="math inline">\(X\)</span> is a nonnegative Borel measure which satisfies the following:</p>
+<ol type="I">
+<li><strong>Compact Finiteness:</strong> <span class="math inline">\(\mu(K) &lt; \infty\)</span> for all compact <span class="math inline">\(K\subset X\)</span>.</li>
+<li><strong>Inner Regularity:</strong> <span class="math inline">\(\mu(U) = \sup\left\{\mu(K) \colon K\subset U, \, K \text{ compact} \right\}\)</span> for all open <span class="math inline">\(U \subset X\)</span>.</li>
+<li><strong>Outer Regularity:</strong> <span class="math inline">\(\mu(A) = \inf\left\{\mu(U) \colon S \subset U, \, U \text{ open} \right\}\)</span> for all <span class="math inline">\(A \in \mathcal{B}\)</span>.</li>
+</ol>
+<p>We let <span class="math inline">\(C_c(X)\)</span> denote the continuous complex-valued functions on <span class="math inline">\(X\)</span> with compact support. If <span class="math inline">\(\mu\)</span> is a Radon measure on <span class="math inline">\(X\)</span> then</p>
+<p><span class="math display">\[ f \mapsto \int_X f \, d\mu \]</span></p>
+<p>is a positive linear functional functional on <span class="math inline">\(C_c(X)\)</span><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. The following theorem<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> provides a converse to this statement:</p>
+<div id="thm-rieszrep" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 5 (Riesz Representation Theorem) </strong></span>Let <span class="math inline">\(\Lambda\)</span> be a positive linear functional on <span class="math inline">\(C_c(X)\)</span>. There exists a unique complete Radon measure on <span class="math inline">\(X\)</span> such that <span class="math inline">\(\Lambda f = \int_X f \, d\mu\)</span> for all <span class="math inline">\(f\in C_c(X)\)</span>. Further, this measure is outer regular on <em>all</em> <span class="math inline">\(\mu\)</span>-measurable sets and inner regular on all finite-measure sets.</p>
+</div>
+<div class="proof">
+<p><span class="proof-title"><em>Proof</em>. </span>I will not prove this theorem in full; rather I will describe the key step of constructing <span class="math inline">\(\mu\)</span>. For each open <span class="math inline">\(U \subset X\)</span> we define</p>
+<p><span class="math display">\[ \mu(U) \coloneqq \sup\left\{ \Lambda f \colon f \in C_c(X), \, 0 \leq f \leq 1, \, \mathrm{supp} f \subset U \right\}. \]</span></p>
+<p>Then for <span class="math inline">\(E \subset X\)</span> we set</p>
+<p><span class="math display">\[ \mu(E) \coloneqq \inf \left\{ \mu(U) \colon E \subset U, \, U \text{ open} \right\}; \]</span></p>
+<p>although we have defined <span class="math inline">\(\mu(E)\)</span> for every subset of <span class="math inline">\(X\)</span>, much of the proof of the Riesz Representation Theorem involves restricting <span class="math inline">\(E\)</span> to be in the “right” <span class="math inline">\(\sigma\)</span>-algebra so that <span class="math inline">\(\mu\)</span> is a measure with the desired properties.</p>
+<div style="text-align: right">
+<p><span class="math inline">\(\square\)</span></p>
+</div>
+</div>
+<p>In light of the above theorem, it is sometimes practice to call any positive linear functional on <span class="math inline">\(C_c(X)\)</span> a <em>Radon integral</em> on <span class="math inline">\(X\)</span>. As mentioned earlier, we can use this theorem to construct Lebesgue measure on <span class="math inline">\(\mathbf{R}^n\)</span> by defining the functional <span class="math inline">\(\Lambda\)</span> to map <span class="math inline">\(f \in C_c(\mathbf{R}^n)\)</span> to <span class="math inline">\(\int_{\mathbf{R}^n} f(x) \, dx\)</span>, its Riemann integral over <span class="math inline">\(\mathbf{R}^n\)</span>.</p>
+<p>We now let <span class="math inline">\(X\)</span> be an arbitrary measure space, and we define for <span class="math inline">\(1 \leq p &lt;\infty\)</span> the <span class="math inline">\(L^p\)</span> spaces</p>
+<p><span class="math display">\[ L^p(\mu) \coloneqq \left\{f \colon \int_X |f|^p \, d\mu &lt; \infty \right\} \]</span></p>
+<p>where each <span class="math inline">\(f\)</span> is understood to be measurable in order for the integral to make sense. For <span class="math inline">\(p = \infty\)</span> we define</p>
+<p><span class="math display">\[ L^\infty(\mu) \coloneqq \left\{ f \colon f \text{ measurable}, \, \operatorname{esssup}|f| &lt; \infty \right\} \]</span></p>
+<p>where <span class="math inline">\(\operatorname{esssup}\)</span> is the <em>essential supremum</em><a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
+<p><span class="math display">\[ \operatorname{esssup}g \coloneqq \inf\{\alpha \in \overline{\mathbf{R}} \colon \mu\left( g^{-1}(\alpha, \infty]\right) = 0\}.  \]</span></p>
+<p>On the <span class="math inline">\(L^p\)</span> spaces we define the <span class="math inline">\(p\)</span>-norm <span class="math inline">\(\|\cdot\|_p\)</span> by</p>
+<p><span class="math display">\[ \| f \|_p \coloneqq \begin{cases}
+    \left( \int_X |f|^p \, d\mu \right)^{1/p} &amp; 1\leq p &lt;\infty\\
+    \operatorname{esssup}|f| &amp; p = \infty
+\end{cases}.\]</span></p>
+<p>Since the <span class="math inline">\(p\)</span>-norm is blind to null sets, we consider the <span class="math inline">\(L^p\)</span> spaces to be <strong>equivalence classes</strong> of functions, with equivalence given by</p>
+<p><span class="math display">\[ (f \equiv g) \iff (f = g \quad \mu-\text{almost everywhere}) \iff (\| f-g \|_p = 0). \]</span></p>
+<p>The <span class="math inline">\(L^p\)</span> spaces are then Banach spaces under the <span class="math inline">\(p\)</span>-norm i.e.&nbsp;they are complete metric spaces with the metric <span class="math inline">\(d(f,g) = \|f-g\|_p\)</span>. When <span class="math inline">\(X\)</span> is a locally compact Hausdorff space and <span class="math inline">\(\mu\)</span> a complete Radon measure, we have that <span class="math inline">\(C_c(X)\)</span> is dense in <span class="math inline">\(L^p(\mu)\)</span> for all <span class="math inline">\(1\leq p &lt; \infty\)</span>.</p>
+</section>
+<section id="product-measures-and-fubinis-theorem" class="level2">
+<h2 class="anchored" data-anchor-id="product-measures-and-fubinis-theorem">Product Measures and Fubini’s theorem</h2>
+<p>Let <span class="math inline">\((X,\Sigma,\mu)\)</span> and <span class="math inline">\((Y,\mathcal{T},\nu)\)</span> be measure spaces; we define a measure on the cartesian product <span class="math inline">\(X\times Y\)</span> as follows. We define <span class="math inline">\(\Sigma \times \mathcal{T}\)</span> to be the smallest <span class="math inline">\(\sigma\)</span>-algebra on <span class="math inline">\(X \times Y\)</span> which contains all sets of the form <span class="math inline">\(A\times B\)</span> where <span class="math inline">\(A\in \Sigma\)</span> and <span class="math inline">\(B \in \mathcal{T}\)</span>. The product measure <span class="math inline">\(\mu \times \nu\)</span> is then defined to be a measure on <span class="math inline">\((X\times Y, \Sigma \times \mathcal{T})\)</span> such that <span class="math inline">\((\mu \times \nu)(A \times B) = \mu(A)\nu(B)\)</span> for all <span class="math inline">\(A \in \Sigma\)</span>, <span class="math inline">\(B \in \mathcal{T}\)</span>. We note that if <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are both topological spaces, and <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\nu\)</span> are both Borel measures, then <span class="math inline">\(\mu \times \nu\)</span> is a Borel measure on <span class="math inline">\(X\times Y\)</span> endowed with the product topology. If <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\nu\)</span> are both <span class="math inline">\(\sigma\)</span>-finite, then the product measure <span class="math inline">\(\mu \times \nu\)</span> is unique and is also <span class="math inline">\(\sigma\)</span>-finite<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>.</p>
+<p>Suppose now that <span class="math inline">\(X,Y\)</span> are <span class="math inline">\(\sigma\)</span>-finite, let <span class="math inline">\(E \in \Sigma \times \mathcal{T}\)</span>, and for each <span class="math inline">\((x,y) \in X\times Y\)</span>, define the sets</p>
+<p><span class="math display">\[ E_x \coloneqq \{y \in Y \colon (x,y) \in E\} \qquad \text{and} \qquad E^y \coloneqq \{x \in X \colon (x,y) \in E\}. \]</span></p>
+<p>Then <span class="math inline">\(E_x \in \mathcal{T}\)</span> and <span class="math inline">\(E^y \in \Sigma\)</span> and the functions <span class="math inline">\(x\mapsto \nu(E_x)\)</span> and <span class="math inline">\(y \mapsto \mu(E^y)\)</span> are <span class="math inline">\(\Sigma\)</span>- and <span class="math inline">\(\mathcal{T}\)</span>-measurable, respectively. We further have the equality</p>
+<p><span class="math display">\[ (\mu \times \nu)(E) = \int_X \nu(E_x) \, d\mu(x) = \int_Y \mu(E^y) \, d\nu(y). \]</span></p>
+<p>For a <span class="math inline">\((\Sigma \times \mathcal{T})\)</span>-measurable function <span class="math inline">\(f\)</span>, we similarly define <span class="math inline">\(f_x = f(x,y)\)</span> and <span class="math inline">\(f^y = f(x,y)\)</span> for fixed <span class="math inline">\((x,y) \in X \times Y\)</span>. Then <span class="math inline">\(f_x\)</span> is <span class="math inline">\(\mathcal{T}\)</span>-measurable and <span class="math inline">\(f^y\)</span> is <span class="math inline">\(\Sigma\)</span>-measurable.</p>
+<p>With this we can now state Fubini’s Theorem<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>:</p>
+<div id="thm-fubini" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 6 (Fubini’s Theorem) </strong></span>Let <span class="math inline">\((X,\Sigma,\mu)\)</span> and <span class="math inline">\((Y,\mathcal{T},\nu)\)</span> be locally compact Hausdorff measure spaces. For <span class="math inline">\(f \in C_c(X\times Y)\)</span>, the functions</p>
+<p><span class="math display">\[ x \mapsto \int_Y f_x \, d\nu \qquad \text{and} \qquad y \mapsto \int_X f^y \, d\mu \]</span></p>
+<p>are in <span class="math inline">\(C_c(X)\)</span> and <span class="math inline">\(C_c(Y)\)</span>, respectively. Further, we have the equality</p>
+<p><span class="math display">\[ \int_{X \times Y} f \, d(\mu \times \nu) = \int_X \left(\int_Y f_x \, d\nu \right) \, d\mu = \int_Y \left(\int_X f^y \, d\mu \right) \, d\nu. \]</span></p>
+</div>
+
+
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-cohn" class="csl-entry" role="doc-biblioentry">
+Cohn, Donald L. 2013. <em><span>Measure Theory</span></em>. Birkhäuser.
+</div>
+<div id="ref-halmos" class="csl-entry" role="doc-biblioentry">
+Halmos, Paul R. 1974. <em><span>Measure Theory</span></em>. Springer-Verlag.
+</div>
+<div id="ref-papa-rudin" class="csl-entry" role="doc-biblioentry">
+Rudin, Walter. 1987. <em><span class="nocase">Real and Complex Analysis</span></em>. McGraw-Hill.
+</div>
+</div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>a complete <span class="math inline">\(\sigma\)</span>-finite measure which is defined on all Borel sets<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>A positive functional <span class="math inline">\(F\)</span> is one that satisfies <span class="math inline">\(F(f) \geq 0\)</span> whenever <span class="math inline">\(f\geq 0\)</span>.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>This is not to be confused with the similarly-named theorem about continuous linear functionals on Hilbert spaces. There is also another similarly named theorem which describes the continuous dual of <span class="math inline">\(C_0(X)\)</span> – the continuous functions which vanish at infinity.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>The essential supremum is defined only for extended real-valued functions.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>When <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are locally compact Hausdorff spaces with <span class="math inline">\(\sigma\)</span>-finite measures, we could also define the product measure via Fubini’s theorem and the Riesz Representation theorem.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>There are many versions of Fubini’s theorem; here I have stated the one that will be of use to us later.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

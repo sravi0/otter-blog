@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.56">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Shyam Ravishankar">
+<meta name="dcterms.date" content="2026-03-29">
+
+<title>Serre’s Finiteness Theorem (Homotopy Groups of Spheres Part II) – Blog</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Blog</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://sravi0.github.io/"> <i class="bi bi-globe" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Serre’s Finiteness Theorem (Homotopy Groups of Spheres Part II)</h1>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Shyam Ravishankar </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">March 29, 2026</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<div class="hidden">
+
+</div>
+<p>It’s about time I put a bow on the <a href="../../posts/Homotopy Groups of Spheres/index.html">previous blog post</a> about computing homotopy groups of spheres and discussed the proof of Serre’s finiteness theorem:</p>
+<div id="thm-serre" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 1 (Serre)</strong></span> <span class="math inline">\(\pi_k(S^n)\)</span> is always finite, except in two cases:</p>
+<ol type="i">
+<li>If <span class="math inline">\(k = n\)</span> then <span class="math inline">\(\pi_n(S^n) \simeq \mathbb{Z}\)</span>;</li>
+<li>If <span class="math inline">\(n\)</span> is even then <span class="math inline">\(\pi_{2n-1}(S^n) \simeq \mathbb{Z}\oplus A\)</span> for some finite abelian group <span class="math inline">\(A\)</span>.</li>
+</ol>
+</div>
+<p>My approach to this is a natural continuation of the methods I used to compute <span class="math inline">\(\pi_4(S^3)\)</span> in my last post. I’m not doing anything especially clever or fancy; it’s honestly more of a sequence of brute-force computations. Pretty much all the cohomology computations I state use the same process with the Serre spectral sequence that my computation of <span class="math inline">\(\pi_4(S^3)\)</span> employed, so I will omit those details in the interest of everyone’s sanity.</p>
+<section id="rational-homotopy-theory" class="level2">
+<h2 class="anchored" data-anchor-id="rational-homotopy-theory">Rational Homotopy Theory</h2>
+<p>To start off, we can note a couple things:</p>
+<ul>
+<li>We know that <span class="math inline">\(\pi_k(S^n) = 0\)</span> for <span class="math inline">\(k &lt; n\)</span> and <span class="math inline">\(\pi_n(S^n) \simeq \mathbb{Z}\)</span> so we only need to focus on the case that <span class="math inline">\(k &gt; n\)</span> for Serre’s theorem.</li>
+<li>For <span class="math inline">\(n = 0,1\)</span> we can completely compute all homotopy groups and see that they vanish except for <span class="math inline">\(k = n\)</span>, so we can focus on <span class="math inline">\(n &gt; 1\)</span> (which in particular means <span class="math inline">\(S^n\)</span> will always be simply connected).</li>
+<li>For <span class="math inline">\(n = 2\)</span> the Hopf map induces isomorphisms <span class="math inline">\(\pi_k(S^3) \xrightarrow{\sim} \pi_k(S^2)\)</span> for all <span class="math inline">\(k \geq 3\)</span>; hence we can focus on the case where <span class="math inline">\(n \geq 3\)</span>.</li>
+</ul>
+<p>Last time, I sketched a proof using the homological Serre spectral sequence that the homotopy groups of a finite simply-connected CW complex (e.g.&nbsp;<span class="math inline">\(S^n\)</span> for <span class="math inline">\(n &gt; 1\)</span>) are finitely generated. In light of this fact, we observe that Serre’s finiteness theorem is equivalent to the following:</p>
+<div id="thm-serre" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 2 (Serre, rational version)</strong></span> <span class="math inline">\(\pi_k(S^n) \otimes_{\mathbb{Z}} \mathbb{Q}= 0\)</span>, except in two cases:</p>
+<ol type="i">
+<li>If <span class="math inline">\(k = n\)</span> then <span class="math inline">\(\pi_n(S^n) \otimes_{\mathbb{Z}} \mathbb{Q}\simeq \mathbb{Q}\)</span>;</li>
+<li>If <span class="math inline">\(n\)</span> is even then <span class="math inline">\(\pi_{2n-1}(S^n) \otimes_{\mathbb{Z}} \mathbb{Q}\simeq \mathbb{Q}\)</span>.</li>
+</ol>
+</div>
+<p>This is a nicer statement to try to prove, since it is now a precise computation of the so-called “rational homotopy groups.” On the other hand, we cannot immediately start computing these groups without first establishing some tools; fortunately, we can fairly easily modify our existing set of tools for computing homotopy groups to work in this new rational setting.</p>
+<p>Recall that the go-to method for computing homotopy groups was to convert them into homology groups using the Whitehead tower and the Hurewicz theorem. We can still do this trick – since <span class="math inline">\(\mathbb{Q}\)</span> is flat as a <span class="math inline">\(\mathbb{Z}\)</span>-module, the universal coefficient theorem tells us that <span class="math display">\[H_k(X; \mathbb{Q}) \simeq (H_k(X; \mathbb{Z}) \otimes_{\mathbb{Z}} \mathbb{Q}) \oplus \operatorname{Tor}_1^{\mathbb{Z}}(H_{k-1}(X; \mathbb{Z}), \mathbb{Q}) = H_k(X; \mathbb{Z}) \otimes_{\mathbb{Z}} \mathbb{Q}.\]</span> Hence in the Whitehead tower we can apply Hurewicz to <span class="math inline">\(\tau_{\geq n} X\)</span> as usual and obtain <span class="math display">\[\pi_n(\tau_{\geq n} X) \simeq H_n(\tau_{\geq n} X; \mathbb{Z}),\]</span> then tensor with <span class="math inline">\(\mathbb{Q}\)</span> and apply the previous isomorphism from UCT to get <span class="math display">\[\pi_n(\tau_{\geq n} X) \otimes_{\mathbb{Z}} \mathbb{Q}\simeq H_n(\tau_{\geq n} X; \mathbb{Z}) \otimes_{\mathbb{Z}} \mathbb{Q}\simeq H_n(\tau_{\geq n} X; \mathbb{Q}).\]</span></p>
+<p>I’ll also mention a nice result which we don’t need here but can be proven by some contemplation of the Atiyah–Hirzebruch spectral sequence plus classical Hurewicz:</p>
+<div id="thm-ratlHurewicz" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 3 (Rational Hurewicz)</strong></span> Assume <span class="math inline">\(X\)</span> is a simply connected space with <span class="math inline">\(\pi_k(X) \otimes_{\mathbb{Z}} \mathbb{Q}= 0\)</span> for all <span class="math inline">\(0 &lt; k &lt; n\)</span>. Then the Hurewicz map induces an isomorphism <span class="math display">\[\pi_k(X) \otimes_{\mathbb{Z}} \mathbb{Q}\xrightarrow{\sim} H_k(X; \mathbb{Q})\]</span> for all <span class="math inline">\(0 &lt; k &lt; 2n-1\)</span> and a surjection for <span class="math inline">\(k = 2n-1\)</span>.</p>
+</div>
+<p>So we’ve reduced Serre’s theorem to computing some rational homology groups, which is very helpful because <span class="math inline">\(\mathbb{Q}\)</span>-vector spaces have much more structure than <span class="math inline">\(\mathbb{Z}\)</span>-modules. However, our main tool for computing homology – the Serre spectral sequence – computes integral (co)homology. Luckily this is not a big deal; we just need to make a small modification to the Serre spectral sequence.</p>
+<p>Suppose we’re in the setup of the usual Serre spectral sequence; i.e.&nbsp;we have a fibre sequence <span class="math display">\[F \to E \to B\]</span> where <span class="math inline">\(B\)</span> is simply connected. For any abelian group <span class="math inline">\(A\)</span> we have the Atiyah–Hirzebruch spectral sequences<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> <span class="math display">\[\begin{align*}
+E_2^{p,q} = H^p(B; H^q(F; A)) &amp;\Rightarrow H^{p+q}(E; A)\\
+E^2_{p,q} = H_p(B; H_q(F; A)) &amp;\Rightarrow H_{p+q}(E; A).
+\end{align*}\]</span> We might generally expect that with <span class="math inline">\(A = \mathbb{Q}\)</span> or any field, computations with the Atiyah–Hirzebruch spectral sequence should be easier than the Serre spectral sequence, since all extension problems that arise will be trivial.</p>
+<p>With rational Hurewicz and Atiyah–Hirzebruch in our pocket, we can start computing some homology. However, as with the computation of <span class="math inline">\(\pi_4(S^3)\)</span> using the Serre spectral sequence, it will be easier in general to compute cohomology first and then invoke the UCT.</p>
+</section>
+<section id="cohomology-of-eilenbergmaclane-spaces" class="level2">
+<h2 class="anchored" data-anchor-id="cohomology-of-eilenbergmaclane-spaces">Cohomology of Eilenberg–MacLane Spaces</h2>
+<p>Since Eilenberg–MacLane spaces are the fibres of each stage in the Whitehead tower, we need to know their rational cohomology to apply the Atiyah–Hirzebruch spectral sequence to inductively compute rational cohomology of <span class="math inline">\(\tau_{\geq k} S^n\)</span>.</p>
+<div id="lem-ZEMCoh" class="theorem lemma">
+<p><span class="theorem-title"><strong>Lemma 1</strong></span> We have <span class="math display">\[H^*(K(\mathbb{Z},n); \mathbb{Q}) \simeq \begin{cases}
+\mathbb{Q}[\alpha]/(\alpha^2) &amp; \text{if } n \text{ is odd}\\
+\mathbb{Q}[\alpha] &amp; \text{if } n \text{ is even},
+\end{cases}\]</span> with <span class="math inline">\(|\alpha| = n\)</span> in all cases.</p>
+</div>
+<p>As mentioned, I won’t write out the full details of this and subsequent proofs since it’s basically the same spectral sequence techniques each time. For this one, use Atiyah–Hirzebruch on the fibre sequence <span class="math display">\[K(\mathbb{Z},n) \to * \to K(\mathbb{Z},n+1)\]</span> to induct on <span class="math inline">\(n\)</span>, with the base cases <span class="math inline">\(n = 1\)</span> and <span class="math inline">\(n = 2\)</span> given by the fact that <span class="math inline">\(S^1 \simeq K(\mathbb{Z}, 1)\)</span> and <span class="math inline">\(\mathbb{C}\mathbb{P}^\infty \simeq K(\mathbb{Z}, 2)\)</span>.</p>
+<p>We’ll now start expanding from <span class="math inline">\(G = \mathbb{Z}\)</span> to eventually get the rational cohomology of <span class="math inline">\(K(G,n)\)</span> for any finitely generated abelian group <span class="math inline">\(G\)</span>. Our full statement is the following:</p>
+<div id="prp-fgEMCoh" class="theorem proposition">
+<p><span class="theorem-title"><strong>Proposition 1</strong></span> Let <span class="math inline">\(G\)</span> be a finitely generated abelian group; write <span class="math inline">\(G \simeq \mathbb{Z}^k \oplus A\)</span> with <span class="math inline">\(A\)</span> finite. Then <span class="math display">\[H^*(K(G, n); \mathbb{Q}) \simeq \begin{cases}
+\mathbb{Q}[\alpha_1, \ldots, \alpha_k]/(\alpha_1^2, \ldots, \alpha_k^2) &amp; \text{if } n \text{ is odd}\\
+\mathbb{Q}[\alpha_1, \ldots, \alpha_k] &amp; \text{if } n \text{ is even},
+\end{cases}\]</span> with <span class="math inline">\(|\alpha_i| = n\)</span> for all <span class="math inline">\(n\)</span> and all <span class="math inline">\(i\)</span>.</p>
+</div>
+<div class="proof">
+<p><span class="proof-title"><em>Proof</em>. </span>Using Künneth, it suffices to show this statement for the case where <span class="math inline">\(G\)</span> is cyclic. We already have the result for <span class="math inline">\(G \simeq \mathbb{Z}\)</span>, so we can assume <span class="math inline">\(G \simeq \mathbb{Z}/m\mathbb{Z}\)</span> for some <span class="math inline">\(m &gt; 1\)</span>. We now induct on <span class="math inline">\(n\)</span>; once we establish the base case <span class="math inline">\(n = 1\)</span> it will be routine to apply Atiyah–Hirzebruch on the usual fibre sequence <span class="math display">\[K(\mathbb{Z}/m, n) \to * \to K(\mathbb{Z}/m, n+1).\]</span> For <span class="math inline">\(n = 1\)</span>, we can model <span class="math inline">\(K(\mathbb{Z}/m, 1)\)</span> by the lens space <span class="math inline">\(L(\infty, m)\)</span>, which is the quotient of <span class="math inline">\(S^\infty\)</span> by the <span class="math inline">\(\mathbb{Z}/m\)</span>-action given by multiplication by <span class="math inline">\(m^{\text{th}}\)</span> roots of unity. We could try to use Atiyah–Hirzebruch on the fibre sequence <span class="math display">\[\mathbb{Z}/m \to S^\infty \to L(\infty, m),\]</span> but this presents the following complications:</p>
+<ol type="1">
+<li>The spectral sequence doesn’t directly compute <span class="math inline">\(H^*(L(\infty, m); \mathbb{Q})\)</span></li>
+<li><span class="math inline">\(L(\infty, m)\)</span> is not simply connected, so we would have to treat <span class="math inline">\(H^q(\mathbb{Z}/m; \mathbb{Q})\)</span> as a local system on <span class="math inline">\(L(\infty, m)\)</span> rather than a regular coefficient group.</li>
+</ol>
+<p>We instead remember that the <span class="math inline">\(\mathbb{Z}/m\)</span>-action on <span class="math inline">\(S^\infty\)</span> comes from an action of <span class="math inline">\(S^1\)</span>, whose quotient gives <span class="math inline">\(\mathbb{C}\mathbb{P}^\infty\)</span>. This descends to an <span class="math inline">\(S^1\)</span>-action on <span class="math inline">\(L(\infty, m)\)</span>, and quotienting by that action gives us the fibre sequence <span class="math display">\[S^1 \to L(\infty, m) \to \mathbb{C}\mathbb{P}^\infty.\]</span> From here, Atiyah–Hirzebruch easily gives that <span class="math inline">\(H^*(L(\infty, m); \mathbb{Q}) = \mathbb{Q}\)</span> as desired.</p>
+</div>
+</section>
+<section id="rational-homotopy-of-spheres" class="level2">
+<h2 class="anchored" data-anchor-id="rational-homotopy-of-spheres">Rational Homotopy of Spheres</h2>
+<p>With Eilenberg–MacLane spaces taken care of, we can now start attacking the Whitehead towers of spheres to get Serre’s theorem. The case where <span class="math inline">\(n\)</span> is odd is the slightly simpler one. Starting with the fibre sequence <span class="math display">\[K(\mathbb{Z}, n-1) \to \tau_{\geq n+1}S^n \to S^n,\]</span> the usual method applied to Atiyah–Hirzebruch shows that the spectral sequence degenerates at <span class="math inline">\(E_{n+1}\)</span> and all maps on the <span class="math inline">\(E_n\)</span>-page are isomorphisms. Hence <span class="math inline">\(H^*(\tau_{\geq n+1} S^n;\mathbb{Q}) \simeq \mathbb{Q}\)</span>, and by UCT we also get that <span class="math inline">\(H_k(\tau_{\geq n+1}S^n; \mathbb{Q}) = 0\)</span> for <span class="math inline">\(k &gt; 0\)</span>. As discussed at the beginning, this establishes via rational Hurewicz that <span class="math inline">\(\pi_{n+1}S^n\)</span> is finite. Now we can inductively show that <span class="math inline">\(\pi_{n+k}S^n\)</span> is finite for <span class="math inline">\(k &gt; 0\)</span> by using Atiyah–Hirzebruch on the fibre sequence <span class="math display">\[K(\pi_{n+k}S^n, n+k-1) \to \tau_{\geq n+k+1} S^n \to \tau_{\geq n+k} S^n.\]</span> The finiteness of <span class="math inline">\(\pi_{n+k}S^n\)</span> along with <a href="#prp-fgEMCoh" class="quarto-xref">Proposition&nbsp;1</a> gives <span class="math display">\[H^*(K(\pi_{n+k}S^n, n+k-1); \mathbb{Q}) = \mathbb{Q}\]</span> and we also inductively assume that <span class="math display">\[H^*(\tau_{\geq n+k}S^n; \mathbb{Q}) = \mathbb{Q}.\]</span> Then the <span class="math inline">\(E_2\)</span>-page of the Atiyah–Hirzebruch spectral sequence has a single <span class="math inline">\(\mathbb{Q}\)</span> at <span class="math inline">\(E_2^{0,0}\)</span> and <span class="math inline">\(0\)</span> everywhere else, so we instantly get <span class="math display">\[H^*(\tau_{\geq n+k+1}S^n; \mathbb{Q}) = \mathbb{Q}.\]</span> Applying UCT and Rational Hurewicz then yields finiteness of <span class="math inline">\(\pi_{n+k+1}S^n\)</span>.</p>
+<p>Now for the case where <span class="math inline">\(n\)</span> is even – we will eventually do the same induction as in the odd case, but to start off we need to do something different in lower degrees<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. Start again with the fibre sequence <span class="math display">\[K(\mathbb{Z}, n-1) \to \tau_{\geq n+1}S^n \to S^n\]</span> and apply Atiyah–Hirzebruch. In this case the spectral sequence again degenerates at <span class="math inline">\(E_{n+1}\)</span>, but now we do not get all cohomology vanishing; instead we obtain a single nontrivial cohomology group in degree <span class="math inline">\(2n-1\)</span> and thus <span class="math display">\[H^*(\tau_{\geq n+1} S^n; \mathbb{Q}) \simeq \mathbb{Q}[\beta]/(\beta^2), \qquad |\beta| = 2n-1.\]</span> If <span class="math inline">\(n &gt; 2\)</span> (which we can safely assume thanks to the Hopf map and the case of <span class="math inline">\(S^3\)</span> already being done), we see as before that <span class="math display">\[\pi_{n+1}(S^n) \otimes_{\mathbb{Z}} \mathbb{Q}\simeq H_{n+1}(\tau_{\geq n+1}S^n; \mathbb{Q}) = 0,\]</span> so <span class="math inline">\(\pi_{n+1}(S^n)\)</span> is finite. Continuing with the fibre sequence <span class="math display">\[K(\pi_{n+1}S^n, n) \to \tau_{\geq n+2}S^n \to \tau_{\geq n+1} S^n,\]</span> the <span class="math inline">\(E_2\)</span>-page of Atiyah–Hirzebruch is just a line – it has <span class="math inline">\(\mathbb{Q}\)</span> at <span class="math inline">\(E_2^{0,0}\)</span> and <span class="math inline">\(E_2^{2n-1,0}\)</span> and <span class="math inline">\(0\)</span> everywhere else. Hence we immediately see that again, <span class="math display">\[H^*(\tau_{\geq n+2} S^n; \mathbb{Q}) \simeq \mathbb{Q}[\beta]/(\beta^2), \qquad |\beta| = 2n-1,\]</span> and <span class="math inline">\(\pi_{n+2}(S^n)\)</span> is finite. This argument repeats to give finiteness of <span class="math inline">\(\pi_{n+k}(S^n)\)</span> for <span class="math inline">\(k &lt; n-1\)</span>; at <span class="math inline">\(k = n-1\)</span> we once again apply Atiyah–Hirzebruch to <span class="math display">\[K(\pi_{2n-2}S^n, 2n-3) \to \tau_{\geq 2n-1}S^n \to \tau_{\geq 2n-2} S^n\]</span> and obtain the same line on <span class="math inline">\(E_2\)</span>, with <span class="math inline">\(\mathbb{Q}\)</span> at <span class="math inline">\(E_2^{0,0}\)</span> and <span class="math inline">\(E_2^{2n-1,0}\)</span>. Once again, we find that <span class="math display">\[H^*(\tau_{\geq 2n-1} S^n; \mathbb{Q}) \simeq \mathbb{Q}[\beta]/(\beta^2), \qquad |\beta| = 2n-1,\]</span> but now we are interested in the degree <span class="math inline">\(2n-1\)</span> homology. Hence we obtain now that <span class="math display">\[\pi_{2n-1}(S^n) \otimes_{\mathbb{Z}} \mathbb{Q}\simeq H_{2n-1}(\tau_{\geq 2n-1}S^n; \mathbb{Q}) \simeq \mathbb{Q},\]</span> establishing the exceptional case in Serre’s theorem. From here we can repeat the same induction from the odd case (<em>mutatis mutandis</em>) to establish finiteness of <span class="math inline">\(\pi_{k}(S^n)\)</span> for <span class="math inline">\(k &gt; 2n-1\)</span>, as <span class="math inline">\(2n-1\)</span> is now odd and <span class="math inline">\(\pi_{2n-1}(S^n)\)</span> has rank <span class="math inline">\(1\)</span>.</p>
+
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>More generally, we will have such spectral sequences for any generalized (co)homology theory.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>as evidenced by the part of Serre’s theorem that <span class="math inline">\(\pi_{2n-1}(S^n)\)</span> for even <span class="math inline">\(n\)</span> is an exceptional case that is not finite<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = true;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
