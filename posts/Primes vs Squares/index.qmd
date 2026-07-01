@@ -1,0 +1,50 @@
+---
+title: "A \"proof\" that primes are not square"
+author: "Shyam Ravishankar"
+date: "2024-08-24"
+categories:
+image: QR.jpg
+bibliography: ..\\refs.bib
+---
+
+:::{.hidden}
+
+{{< include ..\\..\\macros.qmd >}}
+
+:::
+
+Welcome to my blog! My aim is to post about interesting things that capture my attention, be they topics I am currently learning or random musings that I have. My hope is that whoever reads my posts finds them insightful and worthwhile. This first post is mostly a humorous argument^[which is almost assuredly circular] that prime numbers are not square, though there are some connections to important concepts in algebraic number theory which I will highlight at the end.
+
+## "Proof" that primes are not square
+
+Let $l$ be an arbitrary prime number. In order to show $l$ is not a square integer, our goal will be to construct a number field $K$ in which squares are local norms everywhere i.e. for every prime $\mathfrak{p}$ of $K$, the square integers are in the norm group $\mathrm{Norm}_{K_{\mathfrak{p}}/\Q_p}(K_{\mathfrak{p}}^\times)$. If we can construct such a $K$ with the additional property that $l$ *is not* a local norm at some place^[actually, at itself], then we know that $l$ cannot be a square. To start off, we can use the Chinese Remainder Theorem (CRT) and Dirichlet's Theorem on primes in arithmetic progressions to choose a prime $p$ which is congruent to $1 \bmod 4$ such that $p \nequiv \square \bmod l$ ($p$ is not a square modulo $l$). Similarly, we can use CRT and Dirichlet's theorem to choose a prime $q$ which is different from $p$, satisfying $q \equiv 1 \bmod 4$ and $q \equiv \square \bmod p$.
+
+Our choice of $p$ and $q$ enforces that $K = \Q(\sqrt{p},\sqrt{q})$ satifies the following:
+
+* As $p,q \equiv 1 \bmod 4$, the only primes ramifying in $\Q(\sqrt{p})$ and $\Q(\sqrt{q})$ are $p$ and $q$, respectively. Thus $p$ and $q$ are the only primes which ramify in $K$.
+* Since $q \equiv \square \bmod p$, we know that $p$ splits in $\Q(\sqrt{q})$. Since each prime is $1 \bmod 4$ the law of quadratic reciprocity implies that $p \equiv \square \bmod q$. So $q$ also splits in $\Q(\sqrt{p})$.
+* No prime can be completely inert in $K$, as $C_2 \times C_2$ cannot surject onto $C_4$. Thus every local extension $K_{\mathfrak{r}}/\Q_r$ has degree $1$ or $2$ as the ramified primes ($p$ and $q$) have degree $2$ local extensions.
+* All rational squares are local norms everywhere: if $K_{\mathfrak{r}}/\Q_r$ has degree $1$ then $x^2$ is the norm of $x^2$. Otherwise $K_{\mathfrak{r}}/\Q_r$ is degree $2$, in which case $x^2$ is the norm of $x$.
+* Since $p \nequiv \square \bmod l$ and $p \equiv 1 \bmod 4$, the law of quadratic reciprocity gives that $l \nequiv \square \bmod p$. This means $l$ is inert in $\Q(\sqrt{p})$ and thus in $K$ as well. Per the previous points, the extension $K_{\mathfrak{l}}/\Q_l$ must have degree $2$ so the norm image is $l^{2\Z} \times \Z_l^\times$. This means $l$ is not a local norm at itself.
+
+As desired, we have constructed an extension $K/\Q$ in which all squares are local norms everywhere but $l$ is not a local norm at itself. Thus $l$ cannot be a square, and since $l$ was arbitrary we have shown that no prime is a square!
+
+
+## Serious Discussion: the Hasse Norm Theorem
+
+The inspiration for this argument came from a construction in algebraic number theory relating to the following theorem:
+
+::: {#thm-hassenorm}
+### Hasse Norm Theorem
+
+Let $L/K$ be a cyclic extension of number fields. Then $\alpha \in K^\times$ is in the norm image of $L^\times$ if and only if $\alpha$ is in the local norm image $\mathrm{Norm}_{L_{\mathfrak{q}}/K_{\mathfrak{p}}}(L_{\mathfrak{q}}^\times)$ for all primes $\mathfrak{q}$ of $L$. 
+:::
+
+This theorem is a consequence of global class field theory and is an important ingredient in the proof of the Hasse-Minkowski theorem. However, the Hasse Norm Theorem is true **only** for cyclic extensions: it fails even for the simplest class of non-cyclic abelian extensions -- biquadratic extensions. We have already all but constructed a class of counterexamples:
+
+1. Take a prime $p \equiv 1 \bmod 4$ and choose another prime $q \equiv 1 \bmod 4$ such that $q \equiv \square \bmod p$. Set $K = \Q(\sqrt{p}, \sqrt{q})$.
+2. Per our earlier discussion, $p$ and $q$ are the only ramified primes in $K$ and both split in $K$ as well. Moreover every local extension has degree $1$ or $2$, so all squares are local norms everywhere.
+3. Let $S_p$ be the set of rational primes which split completely in $\Q(\sqrt{p})$; for $x \in \Q^\times$ we define the function
+$$\varphi(x) = \prod_{l \in S_p} (q,x)_l$$
+where $(a,b)_l$ is the Hilbert symbol. It turns out^[See [@cassels-frohlich] exercise 5 for an outline of the proof. Note that the hint in exercise 5.1 should refer to exercise 4.4 rather than 4.3.] that $\ker \varphi = \set{x \in \Q^\times : x^2 \in \mathrm{Norm}_{K/\Q}(K^\times)}$, and when $x$ is divisible only by odd primes $l$ such that $\left(\frac{l}{p}\right) = -1$, we have $\varphi(x) = \left(\frac{x}{q}\right)$.
+4. Thus if (for example) $l$ is any prime which is inert in both $\Q(\sqrt{p})$ and $\Q(\sqrt{q})$, then $l^2$ will be a local norm everywhere but not a global norm.

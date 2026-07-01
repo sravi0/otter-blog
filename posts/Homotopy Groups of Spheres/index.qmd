@@ -1,0 +1,154 @@
+---
+title: "Homotopy Groups of Spheres"
+author: "Shyam Ravishankar"
+date: "2026-02-01"
+categories:
+image: Hopf_Fibration.png
+bibliography: ..\\refs.bib
+---
+
+:::{.hidden}
+
+{{< include ..\\..\\macros.qmd >}}
+
+:::
+
+It's been way too long since I've made a blog post but hopefully I'll be a little more regular with it now. I just finished a course on homotopy theory and I decided it was a good time to try computing some homotopy groups of spheres. Well, at least one homotopy group of a sphere. I'll explain some constructions and results from homotopy theory and how to use them to compute the homotopy group $\pi_4(S^3)$. This all ends up pointing towards a theorem of Serre which tells us that most homotopy groups of spheres are finite, and describes the few exceptions. I'll probably make another post describing how to prove that result later.
+
+**Note:** everything I talk about will be homotopy-theoretic; that means all spaces and maps should be understood as CW/Kan complexes up to homotopy or simplicial sets/topological spaces up to weak equivalence.
+
+## Preliminary results from homotopy theory
+
+I'll start with some easier results about homotopy groups of spheres which aren't necessarily needed to compute $\pi_4(S^3)$ but give context for what we already know and can deduce from our computation.
+
+* $S^0$ is just two points, so $\pi_0(S^0) \simeq \Z/2\Z$ (as pointed sets) and $\pi_k(S^0) = 0$ for $k > 0$.
+* We can compute $\pi_k(S^1)$ easily by looking at its universal cover $\R \twoheadrightarrow S^1$. We get $\pi_0(S^1) = 0$, $\pi_1(S^1) \simeq \Z$, and since $\R$ is contractible $\pi_k(S^1) \simeq \pi_k(\R) = 0$ for $k > 2$.
+* The cellular approximation theorem tells us that for the purposes of homotopy groups we might as well assume all maps $S^k \to S^n$ are cellular^[A map of CW complexes which carries the $m$-skeleton into the $m$ skeleton for all $m$]. We can then conclude that $\pi_k(S^n) = 0$ for $k < n$.
+* The Hurewicz theorem says if $\pi_k(X) = 0$ for all $k < n$ then we have an isomorphism between homotopy and homology $\pi_n(X) \xrightarrow{\sim} H_n(X)$. Hence we obtain that $\pi_n(S^n) \simeq H_n(S^n) \simeq \Z$.
+* The Hopf map $\eta \colon S^3 \to S^2$ is a fibration with fiber $S^1$, hence the long exact sequence on homotopy groups concludes that $\pi_k(S^3) \simeq \pi_k(S^2)$ for $k \geq 3$. In particular, $\pi_3(S^2) \simeq \Z$ and our computation of $\pi_4(S^3)$ will give us $\pi_4(S^2)$ for free.
+* The Freudenthal suspension theorem says the map $S^n \to \Omega S^{n+1}$ induces an isomorphism $\pi_k(S^n) \xrightarrow{\sim} \pi_{k+1}(S^{n+1})$ when $k \leq 2n-2$. Hence we also get $\pi_{n+1}(S^n)$ for free with our computation of $\pi_4(S^3)$.
+
+
+## Tools
+
+### The Whitehead tower
+
+The first of our two main tools for computing homotopy groups of spheres is the Whitehead tower. Roughly, it's a way to (homotopy-theoretically) cover a space by spaces which get closer and closer to a point. More precisely, for a space $X$ there is a sequence of spaces
+$$\cdots \to \tau_{\geq 3}X \to \tau_{\geq 2}X \to \tau_{\geq 1}X \to \tau_{\geq 0}X = X$$
+with the property that
+
+1. $\pi_k(\tau_{\geq n}X) = 0$ for $k < n$;
+2. The map $\tau_{\geq n}X \to X$ induces isomorphisms $\pi_k(\tau_{\geq n}X) \xrightarrow{\sim} \pi_k(X)$ for $k \geq n$.
+
+So essentially we are killing off homotopy groups of $X$ one by one &ndash; $\tau_{\geq 2}X$ is actually the universal cover of $X$ and the Whitehead tower may be thought of as a generalization of that to higher connectivity. This tower also has the property that we have "fibre sequences"
+$$K(\pi_n(X), n-1) \to \tau_{\geq n+1}X \to \tau_{\geq n}X;$$
+this roughly means that (homotopy-theoretically) the fibres of the map $\tau_{\geq n+1}X \to \tau_{\geq n}X$ are these Eilenberg--Maclane spaces $K(\pi_n(X), n-1)$, which are defined by the property that their only nonzero homotopy group is $\pi_{n-1}(K(\pi_n(X), n-1)) \simeq \pi_n(X)$. What this does is it gives us a way to think of $X$ as being built out of spaces which are very simple from the POV of homotopy theory.
+
+### The Serre spectral sequence
+
+Our other main character is the Serre spectral sequence (there's actually two of them but they're kind of the same thing). If we have a fibre sequence
+$$F \to E \to B$$
+where $B$ is simply connected, then we get two spectral sequences relating the (co)homology of $E$ to that of $F$ and $B$:
+\begin{align*}
+E_2^{p,q} = H^p(B; H^q(F)) &\Rightarrow H^{p+q}(E)\\
+E^2_{p,q} = H_p(B; H_q(F)) &\Rightarrow H_{p+q}(E).
+\end{align*}
+I won't go into what a spectral sequence is, but it's basically a bookkeeping machine that helps us relate the groups $H^{p+q}(E)$ to the groups $H^p(B; H^q(F))$ via taking subgroups, quotients, and group extensions. As those familiar with spectral sequences might guess, the Serre spectral sequences have cohomological and homological Serre grading, respectively. Given the fibre sequences that come out of the Whitehead tower, you might guess where this goes: we can iteratively use the Serre spectral sequence(s) to compute (co)homology of $\tau_{\geq n+1}X$ in terms of the (co)homology of $\tau_{\geq n}X$ and $K(\pi_n(X), n-1)$. There are a couple problems with this &ndash;
+
+a) we wanted to compute homotopy groups, not (co)homology;
+b) Eilenberg--Maclane spaces may have simple homotopy groups, but their (co)homology can get kinda complicated.
+
+For a), we can bridge the gap between homotopy and homology using the Hurewicz theorem &ndash; the defining characteristics of the homotopy groups of $\tau_{\geq n}X$ tell us that
+$$\pi_n(X) \simeq \pi_n(\tau_{\geq n}X) \simeq H_n(\tau_{\geq n}X).$$
+For b), we can try to iteratively understand the (co)homology of Eilenberg--Maclane spaces by applying Serre spectral sequences to the fibre sequence that comes from the Whitehead tower of $K(A,n)$:
+$$K(A, n-1) \to * \to K(A,n).$$
+
+
+## Finite generation of homotopy groups
+
+Before actually computing $\pi_4(S^3)$, we (rather annoyingly) need a couple lemmas about finite generation of homology/homotopy groups. Specifically:
+
+::: {#lem-EMhomology}
+Let $A$ be a finitely generated abelian group and $n \in \Z$ positive. Then $H_k(K(A,n))$ and $H^k(K(A,n))$ are finitely generated for all $k \geq 0$.
+:::
+
+::: {#lem-fghomotopy}
+Let $X$ be a finite simply connected CW complex. The homotopy groups $\pi_k(X)$ are finitely generated for all $k \geq 0$.
+:::
+
+::: {.proof}
+### Sketch for @lem-EMhomology
+
+1. Use the Künneth theorem to reduce to the case that $A$ is cyclic and use UCT to reduce to proving this for homology.
+2. For $n = 1$, we can model $K(\Z, 1)$ by $S^1$ and $K(\Z/n, 1)$ by an infinite dimensional lens space (a quotient of $S^\infty$). Both are CW complexes with finitely many cells in each dimension so we are done.
+3. For $n > 1$, we induct on $n$ using the Serre spectral sequence on the fibre sequence
+$$K(A, n-1) \to * \to K(A, n).$$
+Since finitely generated abelian groups are closed under subgroups, quotients, and extensions^[finitely generated abelian groups form a "Serre subcategory" or "Serre class" of abelian groups], we can track through the spectral sequence to find that finite generation of $H_*(K(A,n-1))$ must imply finite generation of $H_*(K(A,n))$.
+
+:::
+
+::: {.proof}
+### Sketch for @lem-fghomotopy
+
+1. As noted before, we have $\pi_k(X) \simeq H_k(\tau_{\geq k}X)$ so it is enough to prove that $\tau_{\geq k}X$ has finitely generated homology.
+2. The simply connected assumption means $\tau_{\geq 2}X = X$ so we have a base case.
+3. We induct on $k$ by using the fibre sequence
+$$K(\pi_k(X), k-1) \to \tau_{\geq k+1}X \to \tau_{\geq k}X$$
+and applying the Serre spectral sequence^[we need $X$ to be simply connected so we can start using the Serre spectral sequence at $k = 2$].
+4. By the first lemma we know $K(\pi_k(X), k-1)$ has finitely generated homology so by our induction hypothesis and the fact that finitely generated abelian groups form a Serre class, we obtain that the homology of $\tau_{\geq k+1}X$ is finitely generated.
+
+:::
+
+## Computing $\pi_4(S^3)$
+
+Now we are ready to compute $\pi_4(S^3)$; we use the same trick with the Whitehead tower mentioned before that $\pi_4(S^3) \simeq H_4(\tau_{\geq 4}S^3)$. To compute homology in this case, we use the fibre sequence
+$$K(\Z, 2) \to \tau_{\geq 4}S^3 \to S^3$$
+and take advantage of the fact that we know fairly well the two outer spaces. Homology of $S^3$ is easy as it is a sphere, and we can model $K(\Z,2)$ by the infinite complex projective space $\mathbb{CP}^\infty$. Even though we completely know these homologies, it turns out directly computing homology of $\tau_{\geq 4}S^3$ through the Serre spectral sequence is hard, so we compute cohomology instead. This turns out to be easier since cohomology has a ring structure and the cohomological Serre spectral sequence is "multiplicative" (it respects the cup product in a suitable sense). Since
+$$H^n(S^3) \simeq \begin{cases}
+\Z & n = 0,3\\
+0 & \text{else}
+\end{cases} \quad \text{and} \quad H^n(\C\P^\infty) \simeq \begin{cases}
+\Z & n \equiv 0 \bmod 2\\
+0 & n \equiv 1 \bmod 2
+\end{cases},$$
+the $E_2$ page of the cohomological Serre spectral sequence is
+<!-- https://q.uiver.app/#q=WzAsMzYsWzAsNiwiXFxaIixbMCwwLDUwLDFdXSxbMSw2LCIwIixbMCwwLDUwLDFdXSxbMiw2LCIwIixbMCwwLDUwLDFdXSxbMCw1LCIwIixbMCwwLDUwLDFdXSxbMCw0LCJcXFoiLFswLDAsNTAsMV1dLFszLDYsIlxcWiIsWzAsMCw1MCwxXV0sWzQsNiwiMCIsWzAsMCw1MCwxXV0sWzEsNSwiMCIsWzAsMCw1MCwxXV0sWzIsNSwiMCIsWzAsMCw1MCwxXV0sWzMsNSwiMCIsWzAsMCw1MCwxXV0sWzQsNSwiMCIsWzAsMCw1MCwxXV0sWzUsNiwiXFxjZG90cyIsWzAsMCw1MCwxXV0sWzUsNSwiXFxjZG90cyIsWzAsMCw1MCwxXV0sWzEsNCwiMCIsWzAsMCw1MCwxXV0sWzIsNCwiMCIsWzAsMCw1MCwxXV0sWzMsNCwiXFxaIixbMCwwLDUwLDFdXSxbNCw0LCIwIixbMCwwLDUwLDFdXSxbNSw0LCJcXGNkb3RzIixbMCwwLDUwLDFdXSxbMCwzLCIwIixbMCwwLDUwLDFdXSxbMSwzLCIwIixbMCwwLDUwLDFdXSxbMiwzLCIwIixbMCwwLDUwLDFdXSxbMywzLCIwIixbMCwwLDUwLDFdXSxbNCwzLCIwIixbMCwwLDUwLDFdXSxbNSwzLCJcXGNkb3RzIixbMCwwLDUwLDFdXSxbMCwyLCJcXFoiLFswLDAsNTAsMV1dLFsxLDIsIjAiLFswLDAsNTAsMV1dLFsyLDIsIjAiLFswLDAsNTAsMV1dLFszLDIsIlxcWiIsWzAsMCw1MCwxXV0sWzQsMiwiMCIsWzAsMCw1MCwxXV0sWzUsMiwiXFxjZG90cyIsWzAsMCw1MCwxXV0sWzAsMSwiXFx2ZG90cyIsWzAsMCw1MCwxXV0sWzEsMSwiXFx2ZG90cyIsWzAsMCw1MCwxXV0sWzIsMSwiXFx2ZG90cyIsWzAsMCw1MCwxXV0sWzMsMSwiXFx2ZG90cyIsWzAsMCw1MCwxXV0sWzQsMSwiXFx2ZG90cyIsWzAsMCw1MCwxXV0sWzAsMF1d -->
+<iframe class="quiver-embed" src="https://q.uiver.app/#q=WzAsMzYsWzAsNiwiXFxaIixbMCwwLDUwLDFdXSxbMSw2LCIwIixbMCwwLDUwLDFdXSxbMiw2LCIwIixbMCwwLDUwLDFdXSxbMCw1LCIwIixbMCwwLDUwLDFdXSxbMCw0LCJcXFoiLFswLDAsNTAsMV1dLFszLDYsIlxcWiIsWzAsMCw1MCwxXV0sWzQsNiwiMCIsWzAsMCw1MCwxXV0sWzEsNSwiMCIsWzAsMCw1MCwxXV0sWzIsNSwiMCIsWzAsMCw1MCwxXV0sWzMsNSwiMCIsWzAsMCw1MCwxXV0sWzQsNSwiMCIsWzAsMCw1MCwxXV0sWzUsNiwiXFxjZG90cyIsWzAsMCw1MCwxXV0sWzUsNSwiXFxjZG90cyIsWzAsMCw1MCwxXV0sWzEsNCwiMCIsWzAsMCw1MCwxXV0sWzIsNCwiMCIsWzAsMCw1MCwxXV0sWzMsNCwiXFxaIixbMCwwLDUwLDFdXSxbNCw0LCIwIixbMCwwLDUwLDFdXSxbNSw0LCJcXGNkb3RzIixbMCwwLDUwLDFdXSxbMCwzLCIwIixbMCwwLDUwLDFdXSxbMSwzLCIwIixbMCwwLDUwLDFdXSxbMiwzLCIwIixbMCwwLDUwLDFdXSxbMywzLCIwIixbMCwwLDUwLDFdXSxbNCwzLCIwIixbMCwwLDUwLDFdXSxbNSwzLCJcXGNkb3RzIixbMCwwLDUwLDFdXSxbMCwyLCJcXFoiLFswLDAsNTAsMV1dLFsxLDIsIjAiLFswLDAsNTAsMV1dLFsyLDIsIjAiLFswLDAsNTAsMV1dLFszLDIsIlxcWiIsWzAsMCw1MCwxXV0sWzQsMiwiMCIsWzAsMCw1MCwxXV0sWzUsMiwiXFxjZG90cyIsWzAsMCw1MCwxXV0sWzAsMSwiXFx2ZG90cyIsWzAsMCw1MCwxXV0sWzEsMSwiXFx2ZG90cyIsWzAsMCw1MCwxXV0sWzIsMSwiXFx2ZG90cyIsWzAsMCw1MCwxXV0sWzMsMSwiXFx2ZG90cyIsWzAsMCw1MCwxXV0sWzQsMSwiXFx2ZG90cyIsWzAsMCw1MCwxXV0sWzAsMF1d&embed" width="816" height="600" style="border-radius: 8px; border: none;"></iframe>
+
+The differentials on this page are all $0$, so the groups remain the same on the $E_3$ page. We get potentially nontrivial differentials on this page:
+<!-- https://q.uiver.app/#q=WzAsMzYsWzAsNiwiXFxaIixbMCwwLDUwLDFdXSxbMSw2LCIwIixbMCwwLDUwLDFdXSxbMiw2LCIwIixbMCwwLDUwLDFdXSxbMCw1LCIwIixbMCwwLDUwLDFdXSxbMCw0LCJcXFoiLFswLDAsNTAsMV1dLFszLDYsIlxcWiIsWzAsMCw1MCwxXV0sWzQsNiwiMCIsWzAsMCw1MCwxXV0sWzEsNSwiMCIsWzAsMCw1MCwxXV0sWzIsNSwiMCIsWzAsMCw1MCwxXV0sWzMsNSwiMCIsWzAsMCw1MCwxXV0sWzQsNSwiMCIsWzAsMCw1MCwxXV0sWzUsNiwiXFxjZG90cyIsWzAsMCw1MCwxXV0sWzUsNSwiXFxjZG90cyIsWzAsMCw1MCwxXV0sWzEsNCwiMCIsWzAsMCw1MCwxXV0sWzIsNCwiMCIsWzAsMCw1MCwxXV0sWzMsNCwiXFxaIixbMCwwLDUwLDFdXSxbNCw0LCIwIixbMCwwLDUwLDFdXSxbNSw0LCJcXGNkb3RzIixbMCwwLDUwLDFdXSxbMCwzLCIwIixbMCwwLDUwLDFdXSxbMSwzLCIwIixbMCwwLDUwLDFdXSxbMiwzLCIwIixbMCwwLDUwLDFdXSxbMywzLCIwIixbMCwwLDUwLDFdXSxbNCwzLCIwIixbMCwwLDUwLDFdXSxbNSwzLCJcXGNkb3RzIixbMCwwLDUwLDFdXSxbMCwyLCJcXFoiLFswLDAsNTAsMV1dLFsxLDIsIjAiLFswLDAsNTAsMV1dLFsyLDIsIjAiLFswLDAsNTAsMV1dLFszLDIsIlxcWiIsWzAsMCw1MCwxXV0sWzQsMiwiMCIsWzAsMCw1MCwxXV0sWzUsMiwiXFxjZG90cyIsWzAsMCw1MCwxXV0sWzAsMSwiXFx2ZG90cyIsWzAsMCw1MCwxXV0sWzEsMSwiXFx2ZG90cyIsWzAsMCw1MCwxXV0sWzIsMSwiXFx2ZG90cyIsWzAsMCw1MCwxXV0sWzMsMSwiXFx2ZG90cyIsWzAsMCw1MCwxXV0sWzQsMSwiXFx2ZG90cyIsWzAsMCw1MCwxXV0sWzAsMF0sWzQsNSwiIiwwLHsiY29sb3VyIjpbMCwwLDUwXX1dLFsyNCwxNSwiIiwwLHsiY29sb3VyIjpbMCwwLDUwXX1dLFszNSwyNywiIiwwLHsic2hvcnRlbiI6eyJzb3VyY2UiOjMwfSwiY29sb3VyIjpbMCwwLDUwXX1dXQ== -->
+<iframe class="quiver-embed" src="https://q.uiver.app/#q=WzAsMzYsWzAsNiwiXFxaIixbMCwwLDUwLDFdXSxbMSw2LCIwIixbMCwwLDUwLDFdXSxbMiw2LCIwIixbMCwwLDUwLDFdXSxbMCw1LCIwIixbMCwwLDUwLDFdXSxbMCw0LCJcXFoiLFswLDAsNTAsMV1dLFszLDYsIlxcWiIsWzAsMCw1MCwxXV0sWzQsNiwiMCIsWzAsMCw1MCwxXV0sWzEsNSwiMCIsWzAsMCw1MCwxXV0sWzIsNSwiMCIsWzAsMCw1MCwxXV0sWzMsNSwiMCIsWzAsMCw1MCwxXV0sWzQsNSwiMCIsWzAsMCw1MCwxXV0sWzUsNiwiXFxjZG90cyIsWzAsMCw1MCwxXV0sWzUsNSwiXFxjZG90cyIsWzAsMCw1MCwxXV0sWzEsNCwiMCIsWzAsMCw1MCwxXV0sWzIsNCwiMCIsWzAsMCw1MCwxXV0sWzMsNCwiXFxaIixbMCwwLDUwLDFdXSxbNCw0LCIwIixbMCwwLDUwLDFdXSxbNSw0LCJcXGNkb3RzIixbMCwwLDUwLDFdXSxbMCwzLCIwIixbMCwwLDUwLDFdXSxbMSwzLCIwIixbMCwwLDUwLDFdXSxbMiwzLCIwIixbMCwwLDUwLDFdXSxbMywzLCIwIixbMCwwLDUwLDFdXSxbNCwzLCIwIixbMCwwLDUwLDFdXSxbNSwzLCJcXGNkb3RzIixbMCwwLDUwLDFdXSxbMCwyLCJcXFoiLFswLDAsNTAsMV1dLFsxLDIsIjAiLFswLDAsNTAsMV1dLFsyLDIsIjAiLFswLDAsNTAsMV1dLFszLDIsIlxcWiIsWzAsMCw1MCwxXV0sWzQsMiwiMCIsWzAsMCw1MCwxXV0sWzUsMiwiXFxjZG90cyIsWzAsMCw1MCwxXV0sWzAsMSwiXFx2ZG90cyIsWzAsMCw1MCwxXV0sWzEsMSwiXFx2ZG90cyIsWzAsMCw1MCwxXV0sWzIsMSwiXFx2ZG90cyIsWzAsMCw1MCwxXV0sWzMsMSwiXFx2ZG90cyIsWzAsMCw1MCwxXV0sWzQsMSwiXFx2ZG90cyIsWzAsMCw1MCwxXV0sWzAsMF0sWzQsNSwiIiwwLHsiY29sb3VyIjpbMCwwLDUwXX1dLFsyNCwxNSwiIiwwLHsiY29sb3VyIjpbMCwwLDUwXX1dLFszNSwyNywiIiwwLHsic2hvcnRlbiI6eyJzb3VyY2UiOjMwfSwiY29sb3VyIjpbMCwwLDUwXX1dXQ==&embed" width="816" height="600" style="border-radius: 8px; border: none;"></iframe>
+and we also see that the spectral sequence will degenerate on the $E_4$ page. Moreover, every diagonal has at most one non-trivial group so the cohomology of $\tau_{\geq 4}S^3$ can be read off directly from the $E_4$ page. How do we determine what's actually on the $E_4$ page though??
+
+We know already from Hurewicz and the UCT that $\tau_{\geq 4}S^3$ has no cohomology in degrees $1,2,3$. This tells us that the groups on those diagonals in $E_4$ must vanish. So we get an isomorphism $E_3^{0,2} \xrightarrow{\sim} E_3^{3,0}$, and all maps on the $E_2$ page were $0$ so going through definitions we have an isomorphism
+$$\Z \simeq H^2(\mathbb{CP}^\infty) \xrightarrow{\sim} H^3(S^3) \simeq \Z.$$
+Here's where we take advantage of the fact that we're looking at *co*homology: the differentials in the spectral sequence satisfy a Leibniz rule with the cup product, which means that if $\alpha$ is a generator of $H^2(\mathbb{CP}^\infty)$, we have
+$$d_3(\alpha^2) = 2\alpha d_3(\alpha).$$
+In particular, the map $\Z \simeq E_3^{0,4} \to E_3^{3,2} \simeq \Z$ is multiplication by $2$. We can actually inductively show this way that the map $\Z \simeq E_3^{0,2n} \to E_3^{3, 2n-2} \simeq \Z$ is multiplication by $n$. This gives us the following computation for the cohomology of $\tau_{\geq 4}S^3$:
+$$H^k(\tau_{\geq 4}, S^3) \simeq \begin{cases}
+\Z & k = 0\\
+0 & k = 1\\
+0 & k = 2n > 0\\
+\Z/n\Z & k = 2n+1 > 1.
+\end{cases}$$
+
+We wanted homology though, and here's where those two finite generation lemmas (@lem-fghomotopy) come in^[We actually only need to know that $H_4(\tau_{\geq 4}S^3)$ is finitely generated, so we could easily get this specific case from the homological Serre spectral sequence. The $E^2$ page looks the same as the $E_2$ page of the cohomological Serre spectral sequence, with differentials going the opposite direction. We again would find that the differentials on the $E^2$ page are zero, so the same groups appear on the $E^3$ page, and the spectral sequence degenerates on the $E^4$ page. We can read off from this that $E^4_{0,4} \simeq H_4(\tau_{\geq 4}S^3)$ is cyclic and thus finitely generated. So we can actually get most of the information of what $\pi_4(S^3)$ is from the homological Serre spectral sequence, but we need the cup product structure on cohomology to pin down the order of the group.]: UCT tells us that
+$$0 = H^4(\tau_{\geq 4}S^3) \simeq \operatorname{Hom}_{\Z}(H_4(\tau_{\geq 4}S^3), \Z)$$
+and
+$$\Z/2\Z \simeq H^5(\tau_{\geq 4}S^3) \simeq \operatorname{Hom}_{\Z}(H_5(\tau_{\geq 4}S^3), \Z) \oplus \operatorname{Ext}_{\Z}^1(H_4(\tau_{\geq 4}S^3), \Z).$$
+Since we know the homology of $\tau_{\geq 4}S^3$ is finitely generated, we see from the first isomorphism that $H_4(\tau_{\geq 4}S^3)$ is finite and from the second that it must be isomorphic to $\Z/2\Z$, and at last we are done!
+
+
+## Outlook
+
+This process is quite technically involved, but theoretically it can be repeated to compute homotopy groups of any space. In general we may not have so nice a space modelling $K(\pi_n(X), n-1)$, but as we've seen we can try to inductively use the Serre spectral sequence to understand homology of those spaces. In fact, working along these lines, Serre proved a much stronger version of the result that $\pi_k(S^n)$ is always finitely generated:
+
+::: {#thm-serre}
+### Serre
+$\pi_k(S^n)$ is always finite, except in two cases:
+
+i. If $k = n$ then $\pi_n(S^n) \simeq \Z$;
+ii. If $n$ is even then $\pi_{2n-1}(S^n) \simeq \Z \oplus A$ for some finite abelian group $A$.
+
+:::
+That's something for [another time](../Serre%20Finiteness/index.qmd) though.

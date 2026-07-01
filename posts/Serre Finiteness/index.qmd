@@ -1,0 +1,157 @@
+---
+title: "Serre's Finiteness Theorem (Homotopy Groups of Spheres Part II)"
+author: "Shyam Ravishankar"
+date: "2026-03-29"
+categories:
+image: Hopf_Fibration.png
+bibliography: ..\\refs.bib
+---
+
+:::{.hidden}
+
+{{< include ..\\..\\macros.qmd >}}
+
+:::
+
+It's about time I put a bow on the [previous blog post](../Homotopy%20Groups%20of%20Spheres/index.qmd) about computing homotopy groups of spheres and discussed the proof of Serre's finiteness theorem:
+
+::: {#thm-serre}
+### Serre
+$\pi_k(S^n)$ is always finite, except in two cases:
+
+i. If $k = n$ then $\pi_n(S^n) \simeq \Z$;
+ii. If $n$ is even then $\pi_{2n-1}(S^n) \simeq \Z \oplus A$ for some finite abelian group $A$.
+
+:::
+
+My approach to this is a natural continuation of the methods I used to compute $\pi_4(S^3)$ in my last post. I'm not doing anything especially clever or fancy; it's honestly more of a sequence of brute-force computations. Pretty much all the cohomology computations I state use the same process with the Serre spectral sequence that my computation of $\pi_4(S^3)$ employed, so I will omit those details in the interest of everyone's sanity.
+
+## Rational Homotopy Theory
+
+To start off, we can note a couple things:
+
+* We know that $\pi_k(S^n) = 0$ for $k < n$ and $\pi_n(S^n) \simeq \Z$ so we only need to focus on the case that $k > n$ for Serre's theorem.
+* For $n = 0,1$ we can completely compute all homotopy groups and see that they vanish except for $k = n$, so we can focus on $n > 1$ (which in particular means $S^n$ will always be simply connected).
+* For $n = 2$ the Hopf map induces isomorphisms $\pi_k(S^3) \xrightarrow{\sim} \pi_k(S^2)$ for all $k \geq 3$; hence we can focus on the case where $n \geq 3$.
+
+Last time, I sketched a proof using the homological Serre spectral sequence that the homotopy groups of a finite simply-connected CW complex (e.g. $S^n$ for $n > 1$) are finitely generated. In light of this fact, we observe that Serre's finiteness theorem is equivalent to the following:
+
+::: {#thm-serre}
+### Serre, rational version
+$\pi_k(S^n) \otimes_{\Z} \Q = 0$, except in two cases:
+
+i. If $k = n$ then $\pi_n(S^n) \otimes_{\Z} \Q \simeq \Q$;
+ii. If $n$ is even then $\pi_{2n-1}(S^n) \otimes_{\Z} \Q \simeq \Q$.
+
+:::
+
+This is a nicer statement to try to prove, since it is now a precise computation of the so-called "rational homotopy groups." On the other hand, we cannot immediately start computing these groups without first establishing some tools; fortunately, we can fairly easily modify our existing set of tools for computing homotopy groups to work in this new rational setting.
+
+Recall that the go-to method for computing homotopy groups was to convert them into homology groups using the Whitehead tower and the Hurewicz theorem. We can still do this trick &ndash; since $\Q$ is flat as a $\Z$-module, the universal coefficient theorem tells us that
+$$H_k(X; \Q) \simeq (H_k(X; \Z) \otimes_{\Z} \Q) \oplus \operatorname{Tor}_1^{\Z}(H_{k-1}(X; \Z), \Q) = H_k(X; \Z) \otimes_{\Z} \Q.$$
+Hence in the Whitehead tower we can apply Hurewicz to $\tau_{\geq n} X$ as usual and obtain
+$$\pi_n(\tau_{\geq n} X) \simeq H_n(\tau_{\geq n} X; \Z),$$
+then tensor with $\Q$ and apply the previous isomorphism from UCT to get
+$$\pi_n(\tau_{\geq n} X) \otimes_{\Z} \Q \simeq H_n(\tau_{\geq n} X; \Z) \otimes_{\Z} \Q \simeq H_n(\tau_{\geq n} X; \Q).$$
+
+I'll also mention a nice result which we don't need here but can be proven by some contemplation of the Atiyah&ndash;Hirzebruch spectral sequence plus classical Hurewicz:
+
+::: {#thm-ratlHurewicz}
+### Rational Hurewicz
+Assume $X$ is a simply connected space with $\pi_k(X) \otimes_{\Z} \Q = 0$ for all $0 < k < n$. Then the Hurewicz map induces an isomorphism
+$$\pi_k(X) \otimes_{\Z} \Q \xrightarrow{\sim} H_k(X; \Q)$$
+for all $0 < k < 2n-1$ and a surjection for $k = 2n-1$.
+
+:::
+
+So we've reduced Serre's theorem to computing some rational homology groups, which is very helpful because $\Q$-vector spaces have much more structure than $\Z$-modules. However, our main tool for computing homology &ndash; the Serre spectral sequence &ndash; computes integral (co)homology. Luckily this is not a big deal; we just need to make a small modification to the Serre spectral sequence.
+
+Suppose we're in the setup of the usual Serre spectral sequence; i.e. we have a fibre sequence
+$$F \to E \to B$$
+where $B$ is simply connected. For any abelian group $A$ we have the Atiyah&ndash;Hirzebruch spectral sequences^[More generally, we will have such spectral sequences for any generalized (co)homology theory.]
+\begin{align*}
+E_2^{p,q} = H^p(B; H^q(F; A)) &\Rightarrow H^{p+q}(E; A)\\
+E^2_{p,q} = H_p(B; H_q(F; A)) &\Rightarrow H_{p+q}(E; A).
+\end{align*}
+We might generally expect that with $A = \Q$ or any field, computations with the Atiyah&ndash;Hirzebruch spectral sequence should be easier than the Serre spectral sequence, since all extension problems that arise will be trivial.
+
+With rational Hurewicz and Atiyah&ndash;Hirzebruch in our pocket, we can start computing some homology. However, as with the computation of $\pi_4(S^3)$ using the Serre spectral sequence, it will be easier in general to compute cohomology first and then invoke the UCT.
+
+
+## Cohomology of Eilenberg&ndash;MacLane Spaces
+
+Since Eilenberg&ndash;MacLane spaces are the fibres of each stage in the Whitehead tower, we need to know their rational cohomology to apply the Atiyah&ndash;Hirzebruch spectral sequence to inductively compute rational cohomology of $\tau_{\geq k} S^n$.
+
+::: {#lem-ZEMCoh}
+
+We have
+$$H^*(K(\Z,n); \Q) \simeq \begin{cases}
+\Q[\alpha]/(\alpha^2) & \text{if } n \text{ is odd}\\
+\Q[\alpha] & \text{if } n \text{ is even},
+\end{cases}$$
+with $|\alpha| = n$ in all cases.
+:::
+As mentioned, I won't write out the full details of this and subsequent proofs since it's basically the same spectral sequence techniques each time. For this one, use Atiyah&ndash;Hirzebruch on the fibre sequence
+$$K(\Z,n) \to * \to K(\Z,n+1)$$
+to induct on $n$, with the base cases $n = 1$ and $n = 2$ given by the fact that $S^1 \simeq K(\Z, 1)$ and $\C\P^\infty \simeq K(\Z, 2)$.
+
+We'll now start expanding from $G = \Z$ to eventually get the rational cohomology of $K(G,n)$ for any finitely generated abelian group $G$. Our full statement is the following:
+
+::: {#prp-fgEMCoh}
+
+Let $G$ be a finitely generated abelian group; write $G \simeq \Z^k \oplus A$ with $A$ finite. Then
+$$H^*(K(G, n); \Q) \simeq \begin{cases}
+\Q[\alpha_1, \ldots, \alpha_k]/(\alpha_1^2, \ldots, \alpha_k^2) & \text{if } n \text{ is odd}\\
+\Q[\alpha_1, \ldots, \alpha_k] & \text{if } n \text{ is even},
+\end{cases}$$
+with $|\alpha_i| = n$ for all $n$ and all $i$.
+
+:::
+::: {.proof}
+
+Using Künneth, it suffices to show this statement for the case where $G$ is cyclic. We already have the result for $G \simeq \Z$, so we can assume $G \simeq \Z/m\Z$ for some $m > 1$. We now induct on $n$; once we establish the base case $n = 1$ it will be routine to apply Atiyah&ndash;Hirzebruch on the usual fibre sequence
+$$K(\Z/m, n) \to * \to K(\Z/m, n+1).$$
+For $n = 1$, we can model $K(\Z/m, 1)$ by the lens space $L(\infty, m)$, which is the quotient of $S^\infty$ by the $\Z/m$-action given by multiplication by $m^{\text{th}}$ roots of unity. We could try to use Atiyah&ndash;Hirzebruch on the fibre sequence
+$$\Z/m \to S^\infty \to L(\infty, m),$$
+but this presents the following complications:
+
+1. The spectral sequence doesn't directly compute $H^*(L(\infty, m); \Q)$
+2. $L(\infty, m)$ is not simply connected, so we would have to treat $H^q(\Z/m; \Q)$ as a local system on $L(\infty, m)$ rather than a regular coefficient group.
+
+We instead remember that the $\Z/m$-action on $S^\infty$ comes from an action of $S^1$, whose quotient gives $\C\P^\infty$. This descends to an $S^1$-action on $L(\infty, m)$, and quotienting by that action gives us the fibre sequence
+$$S^1 \to L(\infty, m) \to \C\P^\infty.$$
+From here, Atiyah&ndash;Hirzebruch easily gives that $H^*(L(\infty, m); \Q) = \Q$ as desired.
+:::
+
+
+## Rational Homotopy of Spheres
+
+With Eilenberg&ndash;MacLane spaces taken care of, we can now start attacking the Whitehead towers of spheres to get Serre's theorem. The case where $n$ is odd is the slightly simpler one. Starting with the fibre sequence
+$$K(\Z, n-1) \to \tau_{\geq n+1}S^n \to S^n,$$
+the usual method applied to Atiyah&ndash;Hirzebruch shows that the spectral sequence degenerates at $E_{n+1}$ and all maps on the $E_n$-page are isomorphisms. Hence $H^*(\tau_{\geq n+1} S^n;\Q) \simeq \Q$, and by UCT we also get that $H_k(\tau_{\geq n+1}S^n; \Q) = 0$ for $k > 0$. As discussed at the beginning, this establishes via rational Hurewicz that $\pi_{n+1}S^n$ is finite. Now we can inductively show that $\pi_{n+k}S^n$ is finite for $k > 0$ by using Atiyah&ndash;Hirzebruch on the fibre sequence
+$$K(\pi_{n+k}S^n, n+k-1) \to \tau_{\geq n+k+1} S^n \to \tau_{\geq n+k} S^n.$$
+The finiteness of $\pi_{n+k}S^n$ along with @prp-fgEMCoh gives
+$$H^*(K(\pi_{n+k}S^n, n+k-1); \Q) = \Q$$
+and we also inductively assume that
+$$H^*(\tau_{\geq n+k}S^n; \Q) = \Q.$$
+Then the $E_2$-page of the Atiyah&ndash;Hirzebruch spectral sequence has a single $\Q$ at $E_2^{0,0}$ and $0$ everywhere else, so we instantly get
+$$H^*(\tau_{\geq n+k+1}S^n; \Q) = \Q.$$
+Applying UCT and Rational Hurewicz then yields finiteness of $\pi_{n+k+1}S^n$.
+
+Now for the case where $n$ is even &ndash; we will eventually do the same induction as in the odd case, but to start off we need to do something different in lower degrees^[as evidenced by the part of Serre's theorem that $\pi_{2n-1}(S^n)$ for even $n$ is an exceptional case that is not finite]. Start again with the fibre sequence
+$$K(\Z, n-1) \to \tau_{\geq n+1}S^n \to S^n$$
+and apply Atiyah&ndash;Hirzebruch. In this case the spectral sequence again degenerates at $E_{n+1}$, but now we do not get all cohomology vanishing; instead we obtain a single nontrivial cohomology group in degree $2n-1$ and thus
+$$H^*(\tau_{\geq n+1} S^n; \Q) \simeq \Q[\beta]/(\beta^2), \qquad |\beta| = 2n-1.$$
+If $n > 2$ (which we can safely assume thanks to the Hopf map and the case of $S^3$ already being done), we see as before that
+$$\pi_{n+1}(S^n) \otimes_{\Z} \Q \simeq H_{n+1}(\tau_{\geq n+1}S^n; \Q) = 0,$$
+so $\pi_{n+1}(S^n)$ is finite. Continuing with the fibre sequence
+$$K(\pi_{n+1}S^n, n) \to \tau_{\geq n+2}S^n \to \tau_{\geq n+1} S^n,$$
+the $E_2$-page of Atiyah&ndash;Hirzebruch is just a line &ndash; it has $\Q$ at $E_2^{0,0}$ and $E_2^{2n-1,0}$ and $0$ everywhere else. Hence we immediately see that again,
+$$H^*(\tau_{\geq n+2} S^n; \Q) \simeq \Q[\beta]/(\beta^2), \qquad |\beta| = 2n-1,$$
+and $\pi_{n+2}(S^n)$ is finite. This argument repeats to give finiteness of $\pi_{n+k}(S^n)$ for $k < n-1$; at $k = n-1$ we once again apply Atiyah&ndash;Hirzebruch to
+$$K(\pi_{2n-2}S^n, 2n-3) \to \tau_{\geq 2n-1}S^n \to \tau_{\geq 2n-2} S^n$$
+and obtain the same line on $E_2$, with $\Q$ at $E_2^{0,0}$ and $E_2^{2n-1,0}$. Once again, we find that
+$$H^*(\tau_{\geq 2n-1} S^n; \Q) \simeq \Q[\beta]/(\beta^2), \qquad |\beta| = 2n-1,$$
+but now we are interested in the degree $2n-1$ homology. Hence we obtain now that
+$$\pi_{2n-1}(S^n) \otimes_{\Z} \Q \simeq H_{2n-1}(\tau_{\geq 2n-1}S^n; \Q) \simeq \Q,$$
+establishing the exceptional case in Serre's theorem. From here we can repeat the same induction from the odd case (*mutatis mutandis*) to establish finiteness of $\pi_{k}(S^n)$ for $k > 2n-1$, as $2n-1$ is now odd and $\pi_{2n-1}(S^n)$ has rank $1$.

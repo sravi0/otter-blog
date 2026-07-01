@@ -1,0 +1,111 @@
+---
+format: html
+---
+
+::: {.content-hidden}
+
+<!-- bold commands (mostly sets) -->
+\newcommand{\C}{\mathbb{C}}  <!-- Complex Numbers -->
+\newcommand{\R}{\mathbb{R}}   <!-- Real Numbers -->
+\newcommand{\Z}{\mathbb{Z}}   <!-- Integers -->
+\newcommand{\Q}{\mathbb{Q}}   <!-- Rational Numbers -->
+\newcommand{\N}{\mathbb{N}}   <!-- Natural Numbers -->
+\renewcommand{\P}{\mathbb{P}} <!-- Projective Space -->
+\newcommand{\F}{\mathbb{F}}   <!-- (Finite) Field -->
+\renewcommand{\O}{\mathcal{O}}  <!-- Ring of Integers/Structure Sheaf -->
+\newcommand{\B}{\mathbb{B}}   <!-- Ball -->
+\newcommand{\A}{\mathbb{A}}   <!-- Adeles -->
+\newcommand{\OQ}{\O_{\bbar{\Q}}} <!-- Ring of Algebraic Integers -->
+\newcommand{\bmu}{\mathbf{\mu}} <!-- Roots of Unity -->
+
+<!-- Fraktur commands (mostly ideals) -->
+\newcommand{\fp}{\mathfrak{p}}
+\newcommand{\fq}{\mathfrak{q}}
+\newcommand{\Fp}{\mathfrak{P}}
+\newcommand{\Fq}{\mathfrak{Q}}
+\newcommand{\fm}{\mathfrak{m}}
+\newcommand{\Fm}{\mathfrak{M}}
+\newcommand{\fa}{\mathfrak{a}}
+\newcommand{\fb}{\mathfrak{b}}
+\newcommand{\fl}{\mathfrak{l}}
+\newcommand{\fc}{\mathfrak{c}}
+
+<!-- vector commands -->
+\newcommand{\vvv}{\Vec{v}}  
+\newcommand{\vv}{\mathbf v} 
+\newcommand{\vu}{\mathbf u} 
+\newcommand{\vw}{\mathbf w}
+\newcommand{\vx}{\mathbf x}
+\newcommand{\vy}{\mathbf y}
+\newcommand{\vb}{\mathbf b}
+\newcommand{\va}{\mathbf a}
+\newcommand{\ve}{\mathbf e}
+\newcommand{\vz}{\mathbf z}
+\newcommand{\vr}{\mathbf r}
+\newcommand{\vc}{\mathbf c}
+\newcommand{\0}{\mathbf 0}
+
+
+<!-- Hat commands -->
+
+\newcommand{\Hh}{\widehat{H}} <!-- Tate Cohomology -->
+
+
+<!-- other useful commands -->
+\newcommand{\Span}{\operatorname{Span}} <!-- Span -->
+\newcommand{\im}{\operatorname{im}} <!-- image -->
+\newcommand{\tr}{\operatorname{tr}} <!-- trace -->
+\newcommand{\rank}{\operatorname{rank}} <!-- rank -->
+\newcommand{\proj}{\operatorname{proj}} <!-- projection -->
+\newcommand{\p}{\partial} <!-- partial differential/boundary -->
+\newcommand{\esssup}{\operatorname{esssup}} <!-- essential supremum -->
+\newcommand{\stab}{\operatorname{Stab}} <!-- stabilizer -->
+\newcommand{\Aut}{\operatorname{Aut}} <!-- automorphism group -->
+\newcommand{\ord}{\operatorname{ord}} <!-- order -->
+\newcommand{\disc}{\operatorname{disc}} <!-- discriminant -->
+\newcommand{\nequiv}{\not\equiv} <!-- not equivalent -->
+\DeclareMathOperator{\Gal}{Gal} <!-- Galois group -->
+\newcommand{\GL}{\operatorname{GL}} <!-- General Linear Group -->
+\newcommand{\id}{\operatorname{id}} <!-- identity -->
+\newcommand{\Cl}{\operatorname{Cl}} <!-- Class group -->
+\newcommand{\Hom}{\operatorname{Hom}} <!-- Hom -->
+\newcommand{\Homcts}{\Hom_{\mathrm{cts}}} <!-- Continuous Homs -->
+\newcommand{\Fr}{\operatorname{Fr}} <!-- Frobenius -->
+\newcommand{\supp}{\operatorname{supp}} <!-- support -->
+<!-- \newcommand\Sha{\text{Ш}} % Sha
+\newcommand{\Cha}{\text{Ч}} % Cha
+\newcommand{\Tse}{\text{Ц}} % Tse -->
+\newcommand{\res}{\operatorname{res}} <!-- restriction -->
+\newcommand{\cores}{\operatorname{cor}} <!-- corestriction -->
+\newcommand{\trans}{\operatorname{trans}} <!-- transgression -->
+\newcommand{\Char}{\operatorname{char}}   <!-- characteristic -->
+<!-- \newcommand{\cs}{\operatorname{cs}}       % completely split primes
+\newcommand\subsetsim{\mathrel{\substack{
+  \textstyle\subset\\[-0.2ex]\textstyle\sim}}} % subset sim -->
+\newcommand{\lcm}{\operatorname{lcm}}     <!-- lcm -->
+\newcommand{\cts}{\operatorname{cts}}     <!-- continuous -->
+\newcommand{\Nm}{\operatorname{Norm}}     <!-- Field-Theoretic Norm -->
+\newcommand{\diag}{\operatorname{diag}}   <!-- diagonal -->
+\newcommand{\WC}{\operatorname{WC}}       <!-- Weil-Chatelet group -->
+\newcommand{\dv}{\operatorname{div}}      <!-- divisor map -->
+\newcommand{\ssum}{\operatorname{sum}}    <!-- sum map -->
+\newcommand{\Div}{\operatorname{Div}}     <!-- divisor group -->
+\newcommand{\Pic}{\operatorname{Pic}}     <!-- Picard group -->
+\newcommand{\Spa}{\operatorname{Spa}}     <!-- adic spectrum -->
+<!-- \newcommand{\rightiso}{\xrightarrow{\sim}}   <!-- isomorphism arrow -->
+\newcommand{\inv}{\operatorname{inv}}     <!-- invariant map -->
+\newcommand{\tors}{\operatorname{tors}}   <!-- torsion -->
+\newcommand{\ab}{\operatorname{ab}}       <!-- abelianization -->
+\newcommand{\mcP}{\mathcal{P}}
+
+
+\newcommand[1]{\ang}{\left\langle#1\right\rangle} <!-- Angle Brackets -->
+\newcommand[1]{\abs}{\left|#1\right|} <!-- Absolute Value -->
+\newcommand[1]{\set}{\left\{#1\right\}} <!-- Set -->
+\newcommand[1]{\norm}{\left\|#1\right\|} <!-- Norm -->
+\newcommand[1]{\floor}{\left\lfloor#1\right\rfloor} <!-- Floor -->
+\newcommand[1]{\ceil}{\left\lceil#1\right\rceil} <!-- Ceiling -->
+\newcommand[1]{\bbar}{\overline{#1}} <!-- Long bar -->
+\newcommand[1]{\hatt}{\widehat{#1}} <!-- wide hat -->
+
+:::

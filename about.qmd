@@ -1,0 +1,13 @@
+---
+title: "About"
+image: otter.jpg
+about:
+  template: jolla
+  links:
+    - icon: globe
+      text: Website
+      href: https://shyam-r.quarto.pub/shyam/
+
+---
+
+This blog is a place for me to share (mathematical) things that have caught my interest, be they random musings or topics that I am actively learning about. My hope is that anyone who reads these posts will be able to learn something about the mathematics from my perspective.
