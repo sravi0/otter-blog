@@ -6,7 +6,7 @@ about:
   links:
     - icon: globe
       text: Website
-      href: https://shyam-r.quarto.pub/shyam/
+      href: https://sravi0.github.io/
 
 ---
 

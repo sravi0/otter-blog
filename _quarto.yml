@@ -7,7 +7,7 @@ website:
     right:
       - about.qmd
       - icon: globe
-        href: https://shyam-r.quarto.pub/shyam/
+        href: https://sravi0.github.io/
 format:
   html:
     respect-user-color-scheme: true
